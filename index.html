@@ -337,11 +337,11 @@ transition:background 0.12s,border-color 0.12s;box-shadow:var(–card-shadow);
 
 /* ── SLIDE PANELS ── */
 .slide-panel {
-position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;display:flex;flex-direction:column;
-transform:translateX(100%);transition:transform 0.32s cubic-bezier(.4,0,.2,1);
-background:var(–bg);overflow:hidden;pointer-events:none;
+position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;
+display:none;flex-direction:column;
+background:var(–bg);overflow:hidden;
 }
-.slide-panel.open{transform:translateX(0);pointer-events:all;}
+.slide-panel.open{display:flex;}
 
 .panel-header{
 padding:14px 16px;
@@ -784,9 +784,9 @@ document.getElementById("today-date").textContent=`${D[n.getDay()]}, ${M[n.getMo
 
 // ── Navigation ──
 function goHome(){document.getElementById("login").classList.add("hidden");document.getElementById("home").classList.remove("hidden");}
-function goHomeScreen(){document.querySelectorAll(".screen").forEach(s=>s.classList.add("hidden"));document.getElementById("home").classList.remove("hidden");}
+function goHomeScreen(){document.querySelectorAll(".screen").forEach(function(s){ s.classList.add("hidden"); });document.getElementById("home").classList.remove("hidden");}
 function openMod(k){
-  document.querySelectorAll(".screen").forEach(function(s){s.classList.add("hidden");});
+  document.querySelectorAll(".screen").forEach(function(s){ s.classList.add("hidden"); });
   if(k==="chem"){document.getElementById("chem-screen").classList.remove("hidden");renderChemTabs();renderChemBody();}
   if(k==="calc"){document.getElementById("calc-screen").classList.remove("hidden");}
   if(k==="sds-main"){
@@ -811,12 +811,13 @@ function closeComing(){document.getElementById("coming").classList.remove("show"
 // ── Mix Calc ──
 let sp={min:1,max:3,mid:2};
 function selSurf(el,mn,mx,md){
-  document.querySelectorAll(".surf-btn").forEach(b=>b.classList.remove("sel"));
-  el.classList.add("sel");sp={min:mn,max:mx,mid:md};
+  document.querySelectorAll(".surf-btn").forEach(function(b){ b.classList.remove("sel"); });
+  el.classList.add("sel");
+  sp={min:mn,max:mx,mid:md};
 }
 function calcMix(){
   const t=parseFloat(document.getElementById("tank-size").value);
-  if(!t||t<=0){alert("Please enter a valid tank size.");return;}
+  if(!t||t<=0){showToast("Please enter a tank size first");return;}
   const sh=(sp.mid/100)*t, water=t-sh, surf=Math.round(t*0.25);
   document.getElementById("result-rows").innerHTML=
     rrow("💧","Water",water.toFixed(1)+" gal","Fill tank first")+
@@ -825,8 +826,8 @@ function calcMix(){
   const w=document.getElementById("result-warn");
   if(sp.mid>=4){w.style.display="block";w.textContent="⚠ High SH — protect all landscaping, wear full PPE, never let dry on surface.";}
   else{w.style.display="none";}
-  const r=document.getElementById("calc-result");r.style.display="block";
-  r.scrollIntoView({behavior:"smooth",block:"nearest"});
+  var r=document.getElementById("calc-result");
+  if(r){ r.style.display="block"; r.scrollIntoView({behavior:"smooth",block:"nearest"}); }
 }
 function rrow(ic,nm,vl,nt){
   return`<div class="result-row"><div class="result-icon">${ic}</div><div class="result-name"><div class="result-main">${nm}</div><div class="result-note">${nt}</div></div><div class="result-val">${vl}</div></div>`;
@@ -1666,15 +1667,17 @@ function cTogStep(i){cStep=cStep===i?-1:i;renderChemBody();}
 
 // ── Panel Navigation ──
 function openPanel(id){
-  // Hide all screens first
-  document.querySelectorAll('.screen').forEach(function(s){ s.classList.add('hidden'); });
-  // Show the panel
-  document.getElementById(id).classList.add("open");
-  document.getElementById(id).classList.remove("hidden");
+  // Hide the home screen so it cannot show through
+  document.getElementById('home').classList.add('hidden');
+  // Open the panel
+  var panel = document.getElementById(id);
+  if(panel){ panel.classList.add('open'); }
 }
 function closePanel(id){
-  document.getElementById(id).classList.remove("open");
-  // Return to home screen
+  // Close the panel
+  var panel = document.getElementById(id);
+  if(panel){ panel.classList.remove('open'); }
+  // Show home screen again
   document.getElementById('home').classList.remove('hidden');
 }
 
