@@ -761,20 +761,56 @@ padding:14px;margin-bottom:8px;box-shadow:var(–card-shadow);
 <script>
 // ── Theme ──
 let theme = "dark";
-function toggleTheme(){
-  theme = theme==="dark"?"light":"dark";
-  document.body.setAttribute("data-theme", theme);
-  // Update all moon/sun icons
-  document.querySelectorAll(".theme-toggle").forEach(function(b){
-    b.textContent = theme==="dark"?"🌙":"☀️";
+
+var DARK_THEME = {
+  "--bg":"#061a27","--bg2":"#0a2538","--bg3":"#0e3248",
+  "--surface":"rgba(255,255,255,0.04)","--surface2":"rgba(255,255,255,0.07)",
+  "--border":"rgba(255,255,255,0.08)","--border2":"rgba(255,255,255,0.13)",
+  "--text":"#e8f4fc","--text2":"#7fb3cc","--text3":"#4a7d96",
+  "--accent":"#0e7eb5","--accent2":"#00c6e8",
+  "--green":"#00d97e","--amber":"#f5a623","--red":"#ff3b5c",
+  "--shadow":"rgba(0,0,0,0.4)",
+  "--header-bg":"rgba(6,26,39,0.92)",
+  "--card-shadow":"0 2px 16px rgba(0,0,0,0.25)"
+};
+
+var LIGHT_THEME = {
+  "--bg":"#f0f7fb","--bg2":"#e2f0f7","--bg3":"#d0e8f3",
+  "--surface":"rgba(255,255,255,0.9)","--surface2":"rgba(255,255,255,1)",
+  "--border":"rgba(14,126,181,0.12)","--border2":"rgba(14,126,181,0.22)",
+  "--text":"#062233","--text2":"#2a6a8a","--text3":"#5a9ab8",
+  "--accent":"#0e7eb5","--accent2":"#0099cc",
+  "--green":"#00a85a","--amber":"#d4880a","--red":"#d92b4b",
+  "--shadow":"rgba(14,126,181,0.1)",
+  "--header-bg":"rgba(240,247,251,0.95)",
+  "--card-shadow":"0 2px 16px rgba(14,126,181,0.1)"
+};
+
+function applyTheme(t){
+  var vars = t==="dark" ? DARK_THEME : LIGHT_THEME;
+  var root = document.documentElement;
+  Object.keys(vars).forEach(function(k){
+    root.style.setProperty(k, vars[k]);
   });
-  // Sync the settings toggle checkbox
+  document.body.setAttribute("data-theme", t);
+}
+
+function toggleTheme(){
+  theme = theme==="dark" ? "light" : "dark";
+  applyTheme(theme);
+  // Update moon/sun icons
+  document.querySelectorAll(".theme-toggle").forEach(function(b){
+    b.textContent = theme==="dark" ? "🌙" : "☀️";
+  });
+  // Sync settings toggle
   var dt = document.getElementById("dark-toggle");
   if(dt) dt.checked = (theme==="dark");
-  // Update dark mode icon in settings row
   var dmi = document.getElementById("dark-mode-icon");
-  if(dmi) dmi.textContent = theme==="dark"?"🌙":"☀️";
+  if(dmi) dmi.textContent = theme==="dark" ? "🌙" : "☀️";
 }
+
+// Apply dark theme immediately on load
+applyTheme("dark");
 
 // ── Date ──
 const D=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
