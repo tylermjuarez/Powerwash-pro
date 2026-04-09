@@ -6,7 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Clearstone Surface Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/></noscript>
 <style>
 /* ── THEME VARIABLES ── */
 :root {
@@ -35,7 +37,7 @@
 /* dark theme applied via JS */
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:var(–bg);color:var(–text);font-family:“Outfit”,sans-serif;overflow:hidden;transition:background 0.25s,color 0.25s;}
+html,body{height:100%;background:var(–bg);color:var(–text);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;overflow:hidden;transition:background 0.25s,color 0.25s;}
 ::-webkit-scrollbar{display:none;}
 
 /* ── SCREENS ── */
@@ -70,7 +72,7 @@ pointer-events:none;opacity:0.6;
 .field-input{
 width:100%;background:var(–surface);border:1px solid var(–border2);
 border-radius:10px;padding:13px 16px;font-size:14px;color:var(–text);
-font-family:“Outfit”,sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;
+font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;
 }
 .field-input:focus{border-color:rgba(14,126,181,0.6);background:rgba(14,126,181,0.06);}
 .field-input::placeholder{color:var(–text3);}
@@ -79,7 +81,7 @@ width:100%;margin-top:6px;
 background:linear-gradient(135deg,var(–cs-blue),var(–cs-blue2));
 border:none;border-radius:10px;padding:15px;
 font-size:14px;font-weight:700;color:white;
-font-family:“Outfit”,sans-serif;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;
+font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;
 box-shadow:0 4px 20px rgba(14,126,181,0.35);
 transition:transform 0.13s,box-shadow 0.13s,opacity 0.13s;
 }
@@ -204,7 +206,7 @@ transition:background 0.3s;
 .nbtn{flex:1;border:none;background:transparent;cursor:pointer;padding:9px 4px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;}
 .nbtn:active{opacity:0.6;}
 .n-icon{font-size:19px;}
-.n-label{font-size:9px;color:var(–text3);font-family:“Outfit”,sans-serif;letter-spacing:0.04em;font-weight:600;}
+.n-label{font-size:9px;color:var(–text3);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:0.04em;font-weight:600;}
 .nbtn.active .n-label{color:var(–accent);}
 .n-dot{width:3px;height:3px;border-radius:50%;background:var(–accent);display:none;margin-top:1px;}
 .nbtn.active .n-dot{display:block;}
@@ -219,10 +221,10 @@ opacity:0;pointer-events:none;transition:opacity 0.22s;padding:36px;
 
 .coming.show{opacity:1;pointer-events:all;}
 .c-icon{font-size:52px;margin-bottom:18px;}
-.c-title{font-family:“Bebas Neue”,sans-serif;font-size:30px;letter-spacing:2px;color:var(–text);margin-bottom:8px;text-align:center;}
+.c-title{font-family:“Bebas Neue”,“Arial Narrow”,Arial,sans-serif;font-weight:900;letter-spacing:2px;font-size:30px;letter-spacing:2px;color:var(–text);margin-bottom:8px;text-align:center;}
 .c-desc{font-size:13px;color:var(–text2);text-align:center;line-height:1.65;max-width:270px;}
 .c-tag{margin-top:14px;font-size:10px;color:var(–amber);letter-spacing:0.16em;text-transform:uppercase;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);border-radius:20px;padding:4px 14px;}
-.c-close{margin-top:24px;background:var(–surface);border:1px solid var(–border2);border-radius:10px;padding:11px 32px;font-size:14px;font-weight:600;color:var(–text);font-family:“Outfit”,sans-serif;cursor:pointer;}
+.c-close{margin-top:24px;background:var(–surface);border:1px solid var(–border2);border-radius:10px;padding:11px 32px;font-size:14px;font-weight:600;color:var(–text);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;}
 
 /* Module screens */
 .mod-header{
@@ -233,14 +235,14 @@ border-bottom:1px solid var(–border);
 background:var(–header-bg);backdrop-filter:blur(20px);
 flex-shrink:0;position:sticky;top:0;z-index:10;
 }
-.back-btn{background:var(–surface);border:1px solid var(–border);border-radius:9px;color:var(–text2);padding:7px 13px;font-size:14px;cursor:pointer;font-family:“Outfit”,sans-serif;font-weight:500;}
-.mod-title{font-family:“Bebas Neue”,sans-serif;font-size:20px;letter-spacing:2px;color:var(–text);}
+.back-btn{background:var(–surface);border:1px solid var(–border);border-radius:9px;color:var(–text2);padding:7px 13px;font-size:14px;cursor:pointer;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;font-weight:500;}
+.mod-title{font-family:“Bebas Neue”,“Arial Narrow”,Arial,sans-serif;font-weight:900;letter-spacing:2px;font-size:20px;letter-spacing:2px;color:var(–text);}
 
 /* Chem tabs */
 .chem-tabs{display:flex;border-bottom:1px solid var(–border);background:var(–header-bg);backdrop-filter:blur(20px);position:sticky;top:0;z-index:9;transition:background 0.3s;overflow-x:auto;}
 .ctab{flex:0 0 auto;min-width:68px;border:none;background:transparent;padding:11px 8px 9px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;}
 .ctab-icon{font-size:17px;}
-.ctab-label{font-size:8px;font-family:“Outfit”,sans-serif;letter-spacing:0.04em;font-weight:600;}
+.ctab-label{font-size:8px;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;letter-spacing:0.04em;font-weight:600;}
 
 /* Job cards */
 .job-card{
@@ -287,9 +289,9 @@ transition:background 0.12s,border-color 0.12s;box-shadow:var(–card-shadow);
 
 /* Calc screen */
 .calc-surface-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
-.surf-btn{background:var(–surface);border:1px solid var(–border);border-radius:10px;padding:11px 10px;color:var(–text2);font-family:“Outfit”,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.13s;text-align:center;}
+.surf-btn{background:var(–surface);border:1px solid var(–border);border-radius:10px;padding:11px 10px;color:var(–text2);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.13s;text-align:center;}
 .surf-btn.sel{background:rgba(14,126,181,0.12);border-color:rgba(14,126,181,0.45);color:var(–text);}
-.calc-btn{width:100%;background:linear-gradient(135deg,var(–cs-blue),var(–cs-blue2));border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;color:white;font-family:“Outfit”,sans-serif;cursor:pointer;letter-spacing:0.05em;box-shadow:0 4px 18px rgba(14,126,181,0.3);margin-bottom:16px;}
+.calc-btn{width:100%;background:linear-gradient(135deg,var(–cs-blue),var(–cs-blue2));border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;color:white;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;letter-spacing:0.05em;box-shadow:0 4px 18px rgba(14,126,181,0.3);margin-bottom:16px;}
 .calc-btn:active{opacity:0.88;}
 .result-box{background:rgba(0,217,126,0.05);border:1px solid rgba(0,217,126,0.18);border-radius:14px;padding:16px;display:none;}
 .result-ttl{font-size:9px;color:var(–green);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
@@ -327,8 +329,8 @@ display:flex;align-items:center;justify-content:space-between;
 border-bottom:1px solid var(–border);
 background:var(–header-bg);backdrop-filter:blur(20px);flex-shrink:0;
 }
-.panel-title{font-family:“Bebas Neue”,sans-serif;font-size:20px;letter-spacing:2px;color:var(–text);}
-.panel-close{background:var(–surface);border:1px solid var(–border);border-radius:9px;color:var(–text2);padding:7px 13px;font-size:14px;cursor:pointer;font-family:“Outfit”,sans-serif;font-weight:500;}
+.panel-title{font-family:“Bebas Neue”,“Arial Narrow”,Arial,sans-serif;font-weight:900;letter-spacing:2px;font-size:20px;letter-spacing:2px;color:var(–text);}
+.panel-close{background:var(–surface);border:1px solid var(–border);border-radius:9px;color:var(–text2);padding:7px 13px;font-size:14px;cursor:pointer;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;font-weight:500;}
 .panel-scroll{flex:1;overflow-y:auto;padding:20px 16px 60px;}
 
 /* Profile avatar section */
@@ -352,7 +354,7 @@ box-shadow:0 0 30px rgba(14,126,181,0.2);
 .form-input{
 width:100%;background:var(–surface);border:1px solid var(–border2);
 border-radius:10px;padding:12px 14px;font-size:14px;color:var(–text);
-font-family:“Outfit”,sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;
+font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;outline:none;transition:border-color 0.2s,background 0.2s;
 }
 .form-input:focus{border-color:rgba(14,126,181,0.5);background:rgba(14,126,181,0.05);}
 .form-input::placeholder{color:var(–text3);}
@@ -360,19 +362,19 @@ font-family:“Outfit”,sans-serif;outline:none;transition:border-color 0.2s,ba
 .form-select{
 width:100%;background:var(–surface);border:1px solid var(–border2);
 border-radius:10px;padding:12px 14px;font-size:14px;color:var(–text);
-font-family:“Outfit”,sans-serif;outline:none;-webkit-appearance:none;
+font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;outline:none;-webkit-appearance:none;
 }
 .save-btn{
 width:100%;background:linear-gradient(135deg,var(–cs-blue),var(–cs-blue2));
 border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;
-color:white;font-family:“Outfit”,sans-serif;cursor:pointer;letter-spacing:0.06em;
+color:white;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;letter-spacing:0.06em;
 text-transform:uppercase;box-shadow:0 4px 18px rgba(14,126,181,0.3);margin-bottom:12px;
 }
 .save-btn:active{opacity:0.88;}
 .danger-btn{
 width:100%;background:rgba(255,59,92,0.08);border:1px solid rgba(255,59,92,0.25);
 border-radius:10px;padding:14px;font-size:14px;font-weight:700;
-color:var(–red);font-family:“Outfit”,sans-serif;cursor:pointer;letter-spacing:0.04em;
+color:var(–red);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;letter-spacing:0.04em;
 }
 .danger-btn:active{background:rgba(255,59,92,0.15);}
 
@@ -433,16 +435,16 @@ transform:scale(0.92);transition:transform 0.2s;
 .modal-title{font-size:18px;font-weight:700;color:var(–text);text-align:center;margin-bottom:8px;}
 .modal-desc{font-size:13px;color:var(–text2);text-align:center;line-height:1.5;margin-bottom:24px;}
 .modal-btns{display:flex;gap:10px;}
-.modal-cancel{flex:1;background:var(–surface);border:1px solid var(–border2);border-radius:10px;padding:13px;font-size:14px;font-weight:600;color:var(–text2);font-family:“Outfit”,sans-serif;cursor:pointer;}
-.modal-confirm{flex:1;background:var(–red);border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:700;color:white;font-family:“Outfit”,sans-serif;cursor:pointer;}
+.modal-cancel{flex:1;background:var(–surface);border:1px solid var(–border2);border-radius:10px;padding:13px;font-size:14px;font-weight:600;color:var(–text2);font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;}
+.modal-confirm{flex:1;background:var(–red);border:none;border-radius:10px;padding:13px;font-size:14px;font-weight:700;color:white;font-family:“Outfit”,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;}
 .modal-cancel:active{opacity:0.7;}
 .modal-confirm:active{opacity:0.8;}
 
 /* ── SDS Styles ── */
-.chem-link{color:var(–accent2);text-decoration:underline;cursor:pointer;font-weight:700;background:none;border:none;font-family:‘Outfit’,sans-serif;font-size:inherit;padding:0;display:inline;}
+.chem-link{color:var(–accent2);text-decoration:underline;cursor:pointer;font-weight:700;background:none;border:none;font-family:‘Outfit’,-apple-system,BlinkMacSystemFont,sans-serif;font-size:inherit;padding:0;display:inline;}
 .chem-link:active{opacity:0.7;}
 .sds-header{background:linear-gradient(135deg,rgba(14,126,181,0.15),rgba(0,198,232,0.08));border:1px solid rgba(14,126,181,0.2);border-radius:14px;padding:16px;margin-bottom:16px;}
-.sds-name{font-size:20px;font-weight:800;color:var(–text);font-family:‘Bebas Neue’,sans-serif;letter-spacing:1px;}
+.sds-name{font-size:20px;font-weight:800;color:var(–text);font-family:‘Bebas Neue’,‘Arial Narrow’,Arial,sans-serif;font-weight:900;letter-spacing:1px;}
 .sds-type{font-size:11px;color:var(–accent2);text-transform:uppercase;letter-spacing:0.14em;font-weight:600;margin-top:3px;}
 .sds-aka{font-size:12px;color:var(–text3);margin-top:4px;}
 .sds-section{background:var(–surface);border:1px solid var(–border);border-radius:12px;padding:14px;margin-bottom:10px;}
@@ -469,7 +471,7 @@ transform:scale(0.92);transition:transform 0.2s;
 .sds-filter-btn{
 flex-shrink:0;background:var(–surface);border:1px solid var(–border);
 border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;
-color:var(–text2);font-family:‘Outfit’,sans-serif;cursor:pointer;
+color:var(–text2);font-family:‘Outfit’,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;
 transition:all 0.15s;white-space:nowrap;
 }
 .sds-filter-btn.active{background:rgba(14,126,181,0.15);border-color:rgba(14,126,181,0.4);color:var(–accent2);}
@@ -517,16 +519,16 @@ padding:14px;margin-bottom:8px;box-shadow:var(–card-shadow);
 .protocol-step{background:var(–bg2);border-radius:10px;padding:12px;margin-bottom:8px;border-left:3px solid #f5a623;}
 .protocol-step-num{font-size:10px;color:#f5a623;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
 .protocol-step-text{font-size:13px;color:var(–text);line-height:1.5;}
-.new-analysis-btn{width:100%;background:linear-gradient(135deg,#f5a623,#e08800);border:none;border-radius:12px;padding:15px;font-size:14px;font-weight:700;color:white;font-family:‘Outfit’,sans-serif;cursor:pointer;margin-top:16px;letter-spacing:0.04em;}
+.new-analysis-btn{width:100%;background:linear-gradient(135deg,#f5a623,#e08800);border:none;border-radius:12px;padding:15px;font-size:14px;font-weight:700;color:white;font-family:‘Outfit’,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;margin-top:16px;letter-spacing:0.04em;}
 
 /* ══════════════════════════════════════
 DASHBOARD — CLEAN CORPORATE THEME
 ══════════════════════════════════════ */
-@import url(‘https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap’);
+/* Fonts loaded via <link> tags in <head> — see HTML head section */
 /* –dash-* vars are defined in :root above and updated by JS applyTheme() */
 
 /* Override all var(–bg) etc for dashboard screens */
-#home { background: var(–dash-bg) !important; font-family: ‘Geist’, ‘Outfit’, sans-serif; }
+#home { background: var(–dash-bg) !important; font-family: ‘Geist’, ‘Outfit’, -apple-system, BlinkMacSystemFont, sans-serif; }
 
 /* ── TOP NAV ── */
 .dash-nav {
@@ -562,7 +564,7 @@ display: flex; flex-direction: column; align-items: center; justify-content: cen
 gap: 4px; cursor: pointer; padding: 9px 9px;
 }
 .dash-menu-btn:active { background: var(–dash-border); }
-.dash-ham { width: 16px; height: 1.5px; background: var(–dash-text2); border-radius: 2px; transition: all 0.2s; }
+.dash-ham { width: 16px; height: 2px; background: var(–dash-text2); border-radius: 2px; transition: all 0.2s; }
 .dash-avatar {
 width: 34px; height: 34px; border-radius: 50%;
 background: linear-gradient(135deg, #0052cc, #0e7eb5);
@@ -618,7 +620,7 @@ padding: 0 16px 20px;
 /* ── GREETING ── */
 .dash-greeting { padding: 20px 0 16px; }
 .dash-date { font-size: 11px; color: var(–dash-text3); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
-.dash-hello { font-family: ‘Instrument Serif’, serif; font-size: 26px; color: var(–dash-text); line-height: 1.1; }
+.dash-hello { font-family: ‘Instrument Serif’, Georgia, ‘Times New Roman’, serif; font-size: 26px; color: var(–dash-text); line-height: 1.1; }
 
 /* ── STAT CARDS ── */
 .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
@@ -631,11 +633,36 @@ box-shadow: var(–dash-shadow);
 display: flex; flex-direction: column; align-items: center; gap: 4px;
 }
 .stat-icon { font-size: 18px; }
-.stat-num { font-size: 22px; font-weight: 800; color: var(–dash-text); font-family: ‘Geist’, sans-serif; }
+.stat-num { font-size: 22px; font-weight: 800; color: var(–dash-text); font-family: ‘Geist’, -apple-system, BlinkMacSystemFont, sans-serif; }
 .stat-label { font-size: 9px; font-weight: 600; color: var(–dash-text3); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
 .stat-blue .stat-num { color: var(–dash-blue); }
 .stat-green .stat-num { color: var(–dash-green); }
 .stat-amber .stat-num { color: var(–dash-amber); }
+/* Dark mode stat card backgrounds */
+[data-theme=“dark”] .stat-card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .today-job { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .quoteiq-banner { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .week-cal { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .qt-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .tj-name { color: #e8f4fc; }
+[data-theme=“dark”] .tj-addr { color: #4a7d96; }
+[data-theme=“dark”] .stat-num { color: #e8f4fc; }
+[data-theme=“dark”] .stat-label { color: #4a7d96; }
+[data-theme=“dark”] .dash-section-title { color: #4a7d96; }
+[data-theme=“dark”] .dash-hello { color: #e8f4fc; }
+[data-theme=“dark”] .dash-date { color: #4a7d96; }
+[data-theme=“dark”] .quoteiq-title { color: #e8f4fc; }
+[data-theme=“dark”] .quoteiq-sub { color: #4a7d96; }
+[data-theme=“dark”] .qt-name { color: #7fb3cc; }
+[data-theme=“dark”] .wc-num { color: #e8f4fc; }
+[data-theme=“dark”] .wc-label { color: #4a7d96; }
+[data-theme=“dark”] .dd-label { color: #7fb3cc; }
+[data-theme=“dark”] .dash-dropdown { background: #0d1f2d !important; border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .dash-nav { background: #0d1f2d; border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .dash-nav-btn { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .dash-menu-btn { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); }
+[data-theme=“dark”] .dash-ham { background: #7fb3cc; }
+[data-theme=“dark”] .tj-tag-gray { background: rgba(255,255,255,0.08); color: #4a7d96; }
 
 /* ── QUOTEIQ BANNER ── */
 .quoteiq-banner {
@@ -981,7 +1008,7 @@ transition: box-shadow 0.15s, transform 0.1s;
 
 ```
 <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:7px;">Tank Size (Gallons)</div>
-<input id="tank-size" type="number" placeholder="e.g. 100" style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 15px;font-size:15px;color:var(--text);font-family:Outfit,sans-serif;outline:none;margin-bottom:16px;"/>
+<input id="tank-size" type="number" placeholder="e.g. 100" style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 15px;font-size:15px;color:var(--text);font-family:Outfit,-apple-system,BlinkMacSystemFont,sans-serif;outline:none;margin-bottom:16px;"/>
 
 <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Surface Type</div>
 <div class="calc-surface-grid">
@@ -1979,7 +2006,7 @@ function renderChemBody(){
   } else {
     const job=cat.jobs[cJob];
     h+=`<div style="padding:14px;">`;
-    h+=`<button onclick="cBack()" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text2);padding:6px 12px;font-size:13px;cursor:pointer;font-family:Outfit,sans-serif;font-weight:600;margin-bottom:12px;">‹ Back</button>`;
+    h+=`<button onclick="cBack()" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text2);padding:6px 12px;font-size:13px;cursor:pointer;font-family:Outfit,-apple-system,BlinkMacSystemFont,sans-serif;font-weight:600;margin-bottom:12px;">‹ Back</button>`;
     h+=`<div style="font-size:13px;color:var(--text2);margin-bottom:14px;">${job.desc}</div>`;
     if(job.warns.length){
       h+=`<div class="warn-box"><div class="warn-ttl">⚠ Warnings</div>`;
@@ -3106,7 +3133,7 @@ async function analyzeImage() {
       '2. Create a free account<br>' +
       '3. Go to Settings → API Keys → Create Key<br>' +
       '4. Come back and paste it in <strong>⚙️ Settings → AI Configuration</strong></div>' +
-      '<button onclick="openSettings()" style="background:linear-gradient(135deg,#0e7eb5,#1a9fd4);border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;color:white;font-family:Outfit,sans-serif;cursor:pointer;">Open Settings</button>' +
+      '<button onclick="openSettings()" style="background:linear-gradient(135deg,#0e7eb5,#1a9fd4);border:none;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;color:white;font-family:Outfit,-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;">Open Settings</button>' +
       '</div>';
     return;
   }
@@ -3692,7 +3719,7 @@ function renderDashDate(){
     <div style="padding:14px 16px 8px;">
       <div style="position:relative;">
         <input id="sds-search" type="text" placeholder="Search chemicals..." oninput="filterSDS()"
-          style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:11px 14px 11px 38px;font-size:14px;color:var(--text);font-family:'Outfit',sans-serif;outline:none;"/>
+          style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:11px 14px 11px 38px;font-size:14px;color:var(--text);font-family:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;outline:none;"/>
         <span style="position:absolute;left:12px;top:11px;font-size:16px;">🔍</span>
       </div>
     </div>
@@ -3782,10 +3809,10 @@ function renderDashDate(){
   <!-- Preview area (hidden until photo selected) -->
   <div id="analyzer-preview-wrap" style="display:none;margin-bottom:16px;">
     <img id="analyzer-preview" style="width:100%;border-radius:14px;border:1px solid var(--border);max-height:280px;object-fit:cover;" src="" alt="Preview"/>
-    <button onclick="analyzeImage()" id="analyze-btn" style="width:100%;margin-top:12px;background:linear-gradient(135deg,#f5a623,#e08800);border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:700;color:white;font-family:'Outfit',sans-serif;cursor:pointer;letter-spacing:0.04em;">
+    <button onclick="analyzeImage()" id="analyze-btn" style="width:100%;margin-top:12px;background:linear-gradient(135deg,#f5a623,#e08800);border:none;border-radius:12px;padding:15px;font-size:15px;font-weight:700;color:white;font-family:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;letter-spacing:0.04em;">
       🔍 Analyze This Surface
     </button>
-    <button onclick="resetAnalyzer()" style="width:100%;margin-top:8px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;font-size:13px;font-weight:600;color:var(--text2);font-family:'Outfit',sans-serif;cursor:pointer;">
+    <button onclick="resetAnalyzer()" style="width:100%;margin-top:8px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;font-size:13px;font-weight:600;color:var(--text2);font-family:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer;">
       Choose Different Photo
     </button>
   </div>
