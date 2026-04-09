@@ -339,9 +339,9 @@ transition:background 0.12s,border-color 0.12s;box-shadow:var(–card-shadow);
 .slide-panel {
 position:fixed;top:0;left:0;right:0;bottom:0;z-index:500;display:flex;flex-direction:column;
 transform:translateX(100%);transition:transform 0.32s cubic-bezier(.4,0,.2,1);
-background:var(–bg);overflow:hidden;
+background:var(–bg);overflow:hidden;pointer-events:none;
 }
-.slide-panel.open{transform:translateX(0);}
+.slide-panel.open{transform:translateX(0);pointer-events:all;}
 
 .panel-header{
 padding:14px 16px;
@@ -1666,10 +1666,16 @@ function cTogStep(i){cStep=cStep===i?-1:i;renderChemBody();}
 
 // ── Panel Navigation ──
 function openPanel(id){
+  // Hide all screens first
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.add('hidden'); });
+  // Show the panel
   document.getElementById(id).classList.add("open");
+  document.getElementById(id).classList.remove("hidden");
 }
 function closePanel(id){
   document.getElementById(id).classList.remove("open");
+  // Return to home screen
+  document.getElementById('home').classList.remove('hidden');
 }
 
 // ── Profile ──
@@ -1755,7 +1761,9 @@ function signOut(){
 function confirmSignOut(){
   document.getElementById("signout-modal").classList.remove("show");
   document.querySelectorAll(".screen").forEach(function(s){ s.classList.add("hidden"); });
-  document.querySelectorAll(".slide-panel").forEach(function(p){ p.classList.remove("open"); });
+  document.querySelectorAll(".slide-panel").forEach(function(p){ 
+    p.classList.remove("open"); 
+  });
   document.getElementById("login").classList.remove("hidden");
 }
 function cancelSignOut(){
