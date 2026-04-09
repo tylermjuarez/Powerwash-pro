@@ -28,7 +28,7 @@
 –dash-text: #0a0f1e;
 –dash-text2: #4a5568;
 –dash-text3: #9aa5b4;
-–dash-border: #e8ecf0;
+–dash-border: #d1d9e0;
 –dash-blue: #0052cc;
 –dash-blue2: #0e7eb5;
 –dash-cyan: #00c6e8;
@@ -536,7 +536,7 @@ DASHBOARD — CLEAN CORPORATE THEME
 
 /* ── TOP NAV ── */
 .dash-nav {
-background: var(–dash-nav);
+background: var(–dash-bg2);
 border-bottom: 1px solid var(–dash-border);
 padding: 12px 16px;
 padding-top: max(12px, env(safe-area-inset-top, 12px));
@@ -568,7 +568,7 @@ display: flex; flex-direction: column; align-items: center; justify-content: cen
 gap: 4px; cursor: pointer; padding: 9px 9px;
 }
 .dash-menu-btn:active { background: var(–dash-border); }
-.dash-ham { width: 16px; height: 2px; background: var(–dash-text2); border-radius: 2px; transition: all 0.2s; }
+.dash-ham { width: 16px; height: 2px; background: var(–dash-text); border-radius: 2px; }
 .dash-avatar {
 width: 34px; height: 34px; border-radius: 50%;
 background: linear-gradient(135deg, #0052cc, #0e7eb5);
@@ -623,13 +623,13 @@ padding: 0 16px 20px;
 
 /* ── GREETING ── */
 .dash-greeting { padding: 20px 0 16px; }
-.dash-date { font-size: 11px; color: var(–dash-text3); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.dash-date { font-size: 11px; color: var(–dash-blue2); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
 .dash-hello { font-family:‘New York’,Georgia,serif; font-size: 26px; color: var(–dash-text); line-height: 1.1; }
 
 /* ── STAT CARDS ── */
 .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
 .stat-card {
-background: white;
+background: var(–dash-bg2);
 border-radius: 14px;
 padding: 14px 12px;
 border: 1px solid var(–dash-border);
@@ -670,7 +670,7 @@ display: flex; flex-direction: column; align-items: center; gap: 4px;
 
 /* ── QUOTEIQ BANNER ── */
 .quoteiq-banner {
-background: white;
+background: var(–dash-bg2);
 border: 1px solid var(–dash-border);
 border-radius: 14px;
 padding: 14px 16px;
@@ -691,13 +691,13 @@ transition: box-shadow 0.15s;
 
 /* ── SECTION HEADERS ── */
 .dash-section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; margin-top: 4px; }
-.dash-section-title { font-size: 11px; font-weight: 700; color: var(–dash-text2); letter-spacing: 0.1em; text-transform: uppercase; }
+.dash-section-title { font-size: 11px; font-weight: 700; color: var(–dash-text); letter-spacing: 0.1em; text-transform: uppercase; opacity:0.6; }
 .dash-section-action { font-size: 12px; color: var(–dash-blue2); font-weight: 600; cursor: pointer; }
 
 /* ── TODAY’S JOB CARDS ── */
 .job-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
 .today-job {
-background: white;
+background: var(–dash-bg2);
 border: 1px solid var(–dash-border);
 border-radius: 14px;
 padding: 14px;
@@ -725,7 +725,7 @@ transition: box-shadow 0.15s, transform 0.1s;
 
 /* ── WEEK CALENDAR ── */
 .week-cal {
-background: white;
+background: var(–dash-bg2);
 border: 1px solid var(–dash-border);
 border-radius: 14px;
 padding: 14px;
@@ -758,7 +758,7 @@ gap: 8px;
 margin-bottom: 12px;
 }
 .qt-card {
-background: white;
+background: var(–dash-bg2);
 border: 1px solid var(–dash-border);
 border-radius: 14px;
 padding: 16px 12px;
@@ -1072,10 +1072,10 @@ var LIGHT_THEME = {
   "--shadow":"rgba(14,126,181,0.1)",
   "--header-bg":"rgba(240,247,251,0.95)",
   "--card-shadow":"0 2px 16px rgba(14,126,181,0.1)",
-  "--dash-bg":"#f5f7fa","--dash-bg2":"#ffffff",
+  "--dash-bg":"#edf2f7","--dash-bg2":"#ffffff",
   "--dash-nav":"#ffffff",
-  "--dash-text":"#0a0f1e","--dash-text2":"#4a5568","--dash-text3":"#9aa5b4",
-  "--dash-border":"#e8ecf0",
+  "--dash-text":"#0a0f1e","--dash-text2":"#2d3748","--dash-text3":"#718096",
+  "--dash-border":"#d1d9e0",
   "--dash-blue":"#0052cc","--dash-blue2":"#0e7eb5",
   "--dash-green":"#00875a","--dash-amber":"#c05c00","--dash-red":"#de350b",
   "--dash-shadow":"0 1px 3px rgba(0,0,0,0.08),0 4px 12px rgba(0,0,0,0.04)",
