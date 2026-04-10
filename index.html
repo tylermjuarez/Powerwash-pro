@@ -189,20 +189,56 @@ button,input,select,textarea{font-family:inherit;}
 .chem-link{color:var(--accent2);text-decoration:underline;cursor:pointer;font-weight:700;background:none;border:none;font-size:inherit;padding:0;display:inline;}
 
 /* CALC */
-.surf-btn{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 10px;color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;text-align:center;}
-.surf-btn:active{opacity:0.6;}
-.surf-btn.sel{background:rgba(14,126,181,0.15);border-color:rgba(14,126,181,0.5);color:var(--text);}
-.calc-btn{width:100%;background:linear-gradient(135deg,#0e7eb5,#1a9fd4);border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:700;color:white;cursor:pointer;box-shadow:0 4px 16px rgba(14,126,181,0.35);margin-bottom:16px;}
-.calc-btn:active{opacity:0.85;}
-.result-box{background:rgba(0,217,126,0.05);border:1px solid rgba(0,217,126,0.2);border-radius:14px;padding:16px;display:none;}
-.result-ttl{font-size:9px;color:var(--green);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
-.result-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
-.result-row:last-child{border-bottom:none;}
-.result-ico{font-size:18px;width:24px;text-align:center;}
-.result-main{font-size:13px;font-weight:700;color:var(--text);}
-.result-note{font-size:10px;color:var(--text3);margin-top:1px;}
-.result-val{font-size:13px;font-weight:800;color:var(--green);margin-left:auto;}
-.result-warn{margin-top:12px;padding:10px 12px;background:rgba(255,59,92,0.08);border:1px solid rgba(255,59,92,0.2);border-radius:9px;font-size:11px;color:var(--red);line-height:1.5;display:none;}
+
+.calc-mode-btn{
+  flex:1;background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:10px 8px;font-size:12px;font-weight:700;
+  color:var(--text2);cursor:pointer;letter-spacing:0.03em;
+}
+.calc-mode-btn.active{
+  background:rgba(14,126,181,0.15);border-color:rgba(14,126,181,0.4);color:var(--accent2);
+}
+.calc-mode-btn:active{opacity:0.7;}
+.cjob-btn{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:12px 10px;display:flex;flex-direction:column;align-items:center;
+  gap:6px;cursor:pointer;text-align:center;
+}
+.cjob-btn:active{background:var(--surface2);}
+.cjob-btn.active{background:rgba(14,126,181,0.12);border-color:rgba(14,126,181,0.4);}
+.cjob-ico{font-size:22px;}
+.cjob-lbl{font-size:10px;font-weight:700;color:var(--text);line-height:1.3;}
+.cjob-sub{font-size:9px;color:var(--text3);}
+.mix-preset-btn{
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:9px 12px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;
+  text-align:left;width:100%;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;
+}
+.mix-preset-btn.sel{background:rgba(14,126,181,0.12);border-color:rgba(14,126,181,0.35);color:var(--text);}
+.mix-preset-btn:active{opacity:0.7;}
+.custom-chem-row{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:12px;margin-bottom:8px;
+}
+.custom-chem-select{
+  width:100%;background:var(--bg2);border:1px solid var(--border2);
+  border-radius:8px;padding:10px 12px;font-size:13px;color:var(--text);
+  outline:none;-webkit-appearance:none;margin-bottom:8px;
+}
+.custom-conc-row{display:flex;gap:8px;align-items:center;}
+.custom-conc-input{
+  flex:1;background:var(--bg2);border:1px solid var(--border2);
+  border-radius:8px;padding:10px 12px;font-size:14px;color:var(--text);outline:none;
+}
+.custom-conc-unit{font-size:12px;color:var(--text3);font-weight:600;white-space:nowrap;}
+.remove-chem-btn{
+  background:rgba(255,59,92,0.08);border:1px solid rgba(255,59,92,0.2);
+  border-radius:7px;padding:6px 10px;font-size:12px;color:var(--red);cursor:pointer;white-space:nowrap;
+}
+.remove-chem-btn:active{opacity:0.7;}
+.calc-result-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);}
+.calc-result-row:last-child{border-bottom:none;}
+
 
 /* SDS */
 .sds-filter-btn{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 13px;font-size:11px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;}
@@ -439,34 +475,71 @@ button,input,select,textarea{font-family:inherit;}
 
 <!-- CALC -->
 <div class="screen hidden" id="calc-screen">
-  <div class="mhd"><button class="bk" onclick="goHomeScreen()">‹ Home</button><div class="mttl">Mix Calculator</div><div style="width:60px"></div></div>
-  <div style="flex:1;overflow-y:auto;padding:16px 16px 40px;">
-    <div style="background:rgba(14,126,181,0.08);border:1px solid rgba(14,126,181,0.2);border-radius:14px;padding:16px;margin-bottom:18px;">
-      <div style="font-size:10px;color:var(--accent2);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:5px;">Mix Calculator</div>
-      <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;">Enter Your Tank &amp; Surface</div>
-      <div style="font-size:12px;color:var(--text2);">Get exact chemical amounts for any job</div>
+  <div class="mhd">
+    <button class="bk" onclick="goHomeScreen()">‹ Home</button>
+    <div class="mttl">Mix Calculator</div>
+    <div style="width:60px"></div>
+  </div>
+  <div style="flex:1;overflow-y:auto;padding:16px 16px 60px;" id="calc-scroll">
+
+    <!-- MODE TABS -->
+    <div style="display:flex;gap:8px;margin-bottom:18px;">
+      <button class="calc-mode-btn active" id="mode-job" onclick="setCalcMode('job')">By Job Type</button>
+      <button class="calc-mode-btn" id="mode-custom" onclick="setCalcMode('custom')">Custom Mix</button>
     </div>
-    <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:7px;">Tank Size (Gallons)</div>
-    <input id="tank-size" type="number" placeholder="e.g. 100" style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 15px;font-size:15px;color:var(--text);outline:none;margin-bottom:16px;"/>
-    <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Surface Type</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
-      <button class="surf-btn sel" onclick="selSurf(this,1,3,2)">Vinyl Siding</button>
-      <button class="surf-btn" onclick="selSurf(this,4,6,5)">Asphalt Shingle</button>
-      <button class="surf-btn" onclick="selSurf(this,3,3,3)">Concrete</button>
-      <button class="surf-btn" onclick="selSurf(this,0.5,1,0.75)">Wood / Cedar</button>
-      <button class="surf-btn" onclick="selSurf(this,2,3,2.5)">Brick</button>
-      <button class="surf-btn" onclick="selSurf(this,4,6,5)">Tile Roof</button>
-      <button class="surf-btn" onclick="selSurf(this,1,2,1.5)">Metal Roof</button>
-      <button class="surf-btn" onclick="selSurf(this,3,5,4)">Pavers</button>
+
+    <!-- ── JOB MODE ── -->
+    <div id="calc-job-mode">
+      <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Select Job Type</div>
+      <div id="calc-job-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;"></div>
+
+      <div id="calc-job-detail" style="display:none;">
+        <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Tank Size (Gallons)</div>
+        <input id="job-tank" type="number" placeholder="e.g. 100" style="width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 15px;font-size:15px;color:var(--text);outline:none;margin-bottom:14px;"/>
+        <div id="calc-job-mixes" style="margin-bottom:14px;"></div>
+        <button class="calc-btn" onclick="calcJobMix()">Calculate</button>
+      </div>
     </div>
-    <button class="calc-btn" onclick="calcMix()">Calculate Mix</button>
-    <div class="result-box" id="calc-result">
-      <div class="result-ttl">📊 Your Mix</div>
-      <div id="result-rows"></div>
-      <div class="result-warn" id="result-warn"></div>
+
+    <!-- ── CUSTOM MODE ── -->
+    <div id="calc-custom-mode" style="display:none;">
+      <div style="background:rgba(14,126,181,0.08);border:1px solid rgba(14,126,181,0.18);border-radius:12px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:4px;">Custom Mix Builder</div>
+        <div style="font-size:12px;color:var(--text2);">Enter your container size, pick chemicals, set concentrations. Calculator shows exact amounts.</div>
+      </div>
+
+      <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:7px;">Container / Tank Size</div>
+      <div style="display:flex;gap:8px;margin-bottom:16px;">
+        <input id="custom-tank" type="number" placeholder="Amount" style="flex:1;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;font-size:15px;color:var(--text);outline:none;"/>
+        <select id="custom-unit" style="background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--text);outline:none;-webkit-appearance:none;min-width:90px;">
+          <option value="gal">Gallons</option>
+          <option value="qt">Quarts</option>
+          <option value="oz">Fl Oz</option>
+          <option value="L">Liters</option>
+        </select>
+      </div>
+
+      <div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Add Chemical</div>
+      <div id="custom-chem-list"></div>
+      <button onclick="addCustomChem()" style="width:100%;background:var(--surface);border:1px dashed var(--border2);border-radius:10px;padding:12px;font-size:13px;font-weight:600;color:var(--accent2);cursor:pointer;margin-bottom:14px;">+ Add Another Chemical</button>
+      <button class="calc-btn" onclick="calcCustomMix()">Calculate Mix</button>
     </div>
+
+    <!-- ── RESULTS ── -->
+    <div id="calc-results" style="display:none;margin-top:4px;">
+      <div style="background:rgba(0,217,126,0.05);border:1px solid rgba(0,217,126,0.2);border-radius:14px;padding:16px;">
+        <div style="font-size:9px;color:var(--green);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px;">📊 Your Mix</div>
+        <div id="calc-result-label" style="font-size:13px;color:var(--text2);margin-bottom:12px;"></div>
+        <div id="calc-result-rows"></div>
+        <div id="calc-result-warn" style="margin-top:12px;padding:10px 12px;background:rgba(255,59,92,0.08);border:1px solid rgba(255,59,92,0.2);border-radius:9px;font-size:11px;color:var(--red);line-height:1.5;display:none;"></div>
+        <div id="calc-result-notes" style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.6;"></div>
+      </div>
+      <button onclick="resetCalc()" style="width:100%;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;margin-top:10px;">New Calculation</button>
+    </div>
+
   </div>
 </div>
+
 
 <!-- SDS MAIN -->
 <div class="screen hidden" id="sds-main-screen">
@@ -888,7 +961,7 @@ function goHomeScreen() {
 function openMod(k) {
   document.querySelectorAll(".screen").forEach(function(s) { s.classList.add("hidden"); });
   if(k==="chem") { document.getElementById("chem-screen").classList.remove("hidden"); renderChemTabs(); renderChemBody(); }
-  if(k==="calc") { document.getElementById("calc-screen").classList.remove("hidden"); }
+  if(k==="calc") { document.getElementById("calc-screen").classList.remove("hidden"); setCalcMode("job"); }
   if(k==="sds-main") { document.getElementById("sds-main-screen").classList.remove("hidden"); sdsFilter="all"; sdsSearch=""; var si=document.getElementById("sds-search"); if(si)si.value=""; renderSDSMain(); }
   if(k==="inv") { document.getElementById("inv-screen").classList.remove("hidden"); renderInventory(); }
   if(k==="analyzer") { document.getElementById("analyzer-screen").classList.remove("hidden"); }
@@ -910,29 +983,481 @@ function toggleMenu() {
 }
 
 // CALC
-var sp={min:1,max:3,mid:2};
-function selSurf(el,mn,mx,md) {
-  document.querySelectorAll(".surf-btn").forEach(function(b){b.classList.remove("sel");});
-  el.classList.add("sel"); sp={min:mn,max:mx,mid:md};
+
+// ── MIX CALCULATOR ──
+var calcMode = 'job';
+var selectedJob = null;
+var selectedPreset = null;
+var customChemCount = 0;
+
+// Job type definitions with mixes
+var CALC_JOBS = [
+  {
+    id:'house-wash', icon:'🏠', label:'House Wash', sub:'Vinyl, fiber cement, stucco',
+    presets:[
+      {name:'Standard (1-2% SH)', chems:[
+        {name:'SH 12.5%', pct:1.5, unit:'pct', note:'Final ~1.5% concentration'},
+        {name:'Elemonator', pct:0, oz_per_gal:2, unit:'oz_per_gal', note:'2 oz per gallon of mix'},
+        {name:'Water', fill:true, note:'Fill remainder of tank'}
+      ], warn:'', notes:'Standard house wash — safe on all common siding types.'},
+      {name:'Heavy Mold / Algae (2-3% SH)', chems:[
+        {name:'SH 12.5%', pct:2.5, unit:'pct', note:'Final ~2.5% concentration'},
+        {name:'Elemonator', pct:0, oz_per_gal:3, unit:'oz_per_gal', note:'3 oz per gallon of mix'},
+        {name:'Water', fill:true, note:'Fill remainder'}
+      ], warn:'Keep off plants — rinse vegetation before and after.', notes:'For heavy organic growth. Do not let dry on surface — mist with water if needed.'}
+    ]
+  },
+  {
+    id:'roof-wash', icon:'🏚️', label:'Roof Wash', sub:'Asphalt shingle, tile',
+    presets:[
+      {name:'Asphalt Shingle (4-6% SH)', chems:[
+        {name:'SH 12.5%', pct:5, unit:'pct', note:'Final ~5% concentration'},
+        {name:'Elemonator', pct:0, oz_per_gal:3, unit:'oz_per_gal', note:'3 oz per gallon — extra cling on pitched surface'},
+        {name:'Water', fill:true, note:'Fill remainder'}
+      ], warn:'HIGH SH — protect all landscaping. Wet plants before and after. Do not pressure wash roof.', notes:'Apply via soft wash only. No rinse needed — let rain clean over time.'},
+      {name:'Clay / Concrete Tile (3-4% SH)', chems:[
+        {name:'SH 12.5%', pct:3.5, unit:'pct', note:'Final ~3.5%'},
+        {name:'Elemonator', pct:0, oz_per_gal:2, unit:'oz_per_gal', note:''},
+        {name:'Water', fill:true, note:''}
+      ], warn:'Protect landscaping. Avoid pressure wash on tile.', notes:'Lower concentration than shingle — tile is less porous.'}
+    ]
+  },
+  {
+    id:'driveway', icon:'🛣️', label:'Driveway / Concrete', sub:'Standard cleaning',
+    presets:[
+      {name:'Standard Concrete (3% SH)', chems:[
+        {name:'SH 12.5%', pct:3, unit:'pct', note:'Final ~3%'},
+        {name:'Elemonator', pct:0, oz_per_gal:1.5, unit:'oz_per_gal', note:''},
+        {name:'Water', fill:true, note:'Fill remainder'}
+      ], warn:'', notes:'Pre-wet surface before applying. Post-treat after surface cleaning.'},
+      {name:'Oil / Degreaser Pre-treat', chems:[
+        {name:'Purple Power', pct:0, ratio:'1:5', unit:'ratio', note:'1 part Purple Power to 5 parts water', ratio_num:1, ratio_den:5},
+        {name:'Water', fill:true, note:''}
+      ], warn:'Apply degreaser FIRST. Rinse thoroughly before applying SH — alkaline neutralizes SH on contact.', notes:'Apply, agitate with stiff brush, dwell 5-10 min, rinse completely before any SH application.'}
+    ]
+  },
+  {
+    id:'wood', icon:'🪵', label:'Wood / Cedar', sub:'Siding, decks, fences',
+    presets:[
+      {name:'Wood Cleaner (Sodium Percarbonate)', chems:[
+        {name:'Sodium Percarbonate', pct:0, cups_per_gal:0.75, unit:'cups_per_gal', note:'3/4 cup per gallon of WARM water'},
+        {name:'Warm Water', fill:true, note:'Must use warm water to activate'}
+      ], warn:'', notes:'Dissolve completely before applying. Dwell 8-15 min keeping surface wet. Rinse at 500-800 PSI max, with the grain.'},
+      {name:'Wood Brightener (Oxalic Acid)', chems:[
+        {name:'Oxalic Acid', pct:0, cups_per_gal:0.5, unit:'cups_per_gal', note:'1/2 cup powder per gallon warm water'},
+        {name:'Warm Water', fill:true, note:''}
+      ], warn:'Acid — gloves and eye protection. Harmful to plants — rinse vegetation.', notes:'Apply after cleaning. Dwell 5-10 min. Rinse. Use as brightening step after percarbonate wash.'}
+    ]
+  },
+  {
+    id:'rust-iron', icon:'🟠', label:'Rust / Iron Stains', sub:'Concrete, siding, pavers',
+    presets:[
+      {name:'F9 Barc — Porous Concrete', chems:[
+        {name:'F9 Barc', pct:0, ratio:'2:1', unit:'ratio', note:'2 parts F9 Barc to 1 part water (heavy concentration for porous)', ratio_num:2, ratio_den:1},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'Apply to DRY concrete. Let DRY completely — do NOT rinse early. Stain disappears as concrete dries.', notes:'Cover entire section — never spot spray first pass. Let dry 20-40 min. Neutralize with baking soda after rinsing.'},
+      {name:'F9 Barc — Vinyl Siding', chems:[
+        {name:'F9 Barc', pct:0, ratio:'1:1', unit:'ratio', note:'1 part F9 Barc to 1 part water', ratio_num:1, ratio_den:1},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'Do NOT let dry on vinyl — rinse within 10 min when stain fades. Dried F9 on vinyl leaves white deposits.', notes:'Watch the stain fade — usually 3-8 min on vinyl. Rinse as soon as stain is gone.'},
+      {name:'Oxalic Acid — Light Rust', chems:[
+        {name:'Oxalic Acid', pct:0, cups_per_gal:1, unit:'cups_per_gal', note:'1 cup powder per gallon warm water'},
+        {name:'Warm Water', fill:true, note:''}
+      ], warn:'Keep WET during dwell — do NOT let dry. Harmful to plants.', notes:'Apply to pre-wet surface. Dwell 5-15 min keeping wet. Agitate with nylon brush. Rinse. Neutralize.'}
+    ]
+  },
+  {
+    id:'red-clay', icon:'🟫', label:'Red Clay Stains', sub:'Concrete, brick, foundation',
+    presets:[
+      {name:'F9 Barc — Heavy Clay (Porous)', chems:[
+        {name:'F9 Barc', pct:0, ratio:'2:1', unit:'ratio', note:'2 parts F9 Barc to 1 part water', ratio_num:2, ratio_den:1},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'Apply to completely DRY surface. Pre-clean and let dry first. Let F9 dry into concrete — do NOT rinse early.', notes:'Pre-clean surface first. Let dry 30+ min. Apply F9. Let dry 20-40 min — clay fades as it dries. Reactivate with water then rinse lightly. Neutralize.'},
+      {name:'Oxalic Acid — Clay on Siding', chems:[
+        {name:'Oxalic Acid', pct:0, cups_per_gal:1.5, unit:'cups_per_gal', note:'1.5 cups powder per gallon warm water'},
+        {name:'Warm Water', fill:true, note:''}
+      ], warn:'Acid — keep vegetation wet. Do NOT let dry on vinyl.', notes:'Apply, dwell 5-10 min wet, rinse when stain fades.'}
+    ]
+  },
+  {
+    id:'degreaser', icon:'⚙️', label:'Degreaser / Fleet', sub:'Oil, grease, tire marks',
+    presets:[
+      {name:'Heavy Oil (Full Strength)', chems:[
+        {name:'Purple Power', pct:100, unit:'pct', note:'Full strength — undiluted for severe oil stains'},
+        {name:'Water', fill:false, note:'Do not dilute for heavy stains'}
+      ], warn:'Do NOT apply before SH — alkaline neutralizes SH. Apply, agitate, rinse completely before any SH step.', notes:'Agitate with stiff brush. Dwell 5-10 min. Rinse completely before SH application.'},
+      {name:'Fleet Pre-soak (TFR)', chems:[
+        {name:'Bead Buster XL (TFR)', pct:0, ratio:'1:10', unit:'ratio', note:'1 part TFR to 10 parts water', ratio_num:1, ratio_den:10},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'', notes:'Apply top down via foam cannon. Dwell 3-8 min. Brush wash then rinse.'},
+      {name:'F9 Double Eagle (Concrete Pre-clean)', chems:[
+        {name:'F9 Double Eagle', pct:0, ratio:'1:10', unit:'ratio', note:'1 part Double Eagle to 10 parts water', ratio_num:1, ratio_den:10},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'', notes:'Apply before F9 Barc to open concrete pores. Rinse well before applying F9 Barc.'}
+    ]
+  },
+  {
+    id:'efflorescence', icon:'🧱', label:'Efflorescence', sub:'White mineral deposits on masonry',
+    presets:[
+      {name:'F9 Efflo (Standard)', chems:[
+        {name:'F9 Efflo', pct:0, ratio:'1:7', unit:'ratio', note:'1 part F9 Efflo to 7 parts water on pre-wet masonry', ratio_num:1, ratio_den:7},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'ALWAYS apply to pre-wet masonry — never to dry brick. Neutralize with baking soda after rinsing.', notes:'Apply bottom to top on vertical surfaces. Dwell 3-5 min. Brush agitate. Rinse. Neutralize.'},
+      {name:'F9 Efflo (Heavy Deposits)', chems:[
+        {name:'F9 Efflo', pct:0, ratio:'1:4', unit:'ratio', note:'1 part F9 Efflo to 4 parts water', ratio_num:1, ratio_den:4},
+        {name:'Water', fill:false, ratio_partner:true, note:''}
+      ], warn:'ALWAYS pre-wet masonry. Neutralize after. Never apply to dry brick.', notes:'More concentrated for stubborn crystalline deposits.'}
+    ]
+  },
+  {
+    id:'custom', icon:'⚗️', label:'Custom Mix', sub:'Build your own',
+    presets:[], custom:true
+  }
+];
+
+// Chemicals available for custom mixing (label, unit options)
+var CUSTOM_CHEMS = [
+  {name:'SH (Sodium Hypochlorite 12.5%)', units:['% final conc','oz per gal','ratio']},
+  {name:'Elemonator Surfactant', units:['oz per gal','oz total']},
+  {name:'Purple Power Degreaser', units:['% final conc','ratio','oz per gal']},
+  {name:'Simple Green', units:['% final conc','ratio']},
+  {name:'F9 Barc', units:['ratio','oz per gal']},
+  {name:'F9 Efflo', units:['ratio','oz per gal']},
+  {name:'F9 Double Eagle', units:['ratio','oz per gal']},
+  {name:'F9 Groundskeeper', units:['ratio','oz per gal']},
+  {name:'Oxalic Acid (powder)', units:['cups per gal','oz per gal']},
+  {name:'Sodium Percarbonate', units:['cups per gal','oz per gal']},
+  {name:'Bead Buster XL (TFR)', units:['ratio','oz per gal']},
+  {name:'Sure Klean 600', units:['ratio','oz per gal']},
+  {name:'Aluminum Brightener', units:['ratio','oz per gal']},
+  {name:'Muriatic Acid', units:['ratio']},
+  {name:'Baking Soda (Neutralizer)', units:['tbsp per gal','oz per gal']},
+  {name:'Water', units:['fill remainder','gal','oz']},
+  {name:'Other / Custom', units:['% final conc','ratio','oz per gal','oz total']}
+];
+
+function setCalcMode(mode) {
+  calcMode = mode;
+  document.getElementById('mode-job').classList.toggle('active', mode==='job');
+  document.getElementById('mode-custom').classList.toggle('active', mode==='custom');
+  document.getElementById('calc-job-mode').style.display = mode==='job' ? 'block' : 'none';
+  document.getElementById('calc-custom-mode').style.display = mode==='custom' ? 'block' : 'none';
+  document.getElementById('calc-results').style.display = 'none';
+  if(mode==='job') renderCalcJobs();
+  if(mode==='custom') initCustomMode();
 }
-function calcMix() {
-  var t=parseFloat(document.getElementById("tank-size").value);
-  if(!t||t<=0){showToast("Please enter a tank size");return;}
-  var sh=(sp.mid/100)*t,water=t-sh,surf=Math.round(t*0.25);
-  document.getElementById("result-rows").innerHTML=
-    rrow("💧","Water",water.toFixed(1)+" gal","Fill tank first")+
-    rrow("🧪","SH (12%)",sh.toFixed(1)+" gal","("+sp.min+"–"+sp.max+"% final)")+
-    rrow("🫧","Surfactant",surf+" oz","Elemonator — add last");
-  var w=document.getElementById("result-warn");
-  if(sp.mid>=4){w.style.display="block";w.textContent="⚠ High SH — protect landscaping, wear full PPE.";}
-  else{w.style.display="none";}
-  var r=document.getElementById("calc-result");
-  r.style.display="block";
-  r.scrollIntoView({behavior:"smooth",block:"nearest"});
+
+function renderCalcJobs() {
+  var h = '';
+  CALC_JOBS.forEach(function(j, i) {
+    h += '<div class="cjob-btn' + (selectedJob===i?' active':'') + '" onclick="selectCalcJob('+i+')">';
+    h += '<div class="cjob-ico">'+j.icon+'</div>';
+    h += '<div class="cjob-lbl">'+j.label+'</div>';
+    h += '<div class="cjob-sub">'+j.sub+'</div>';
+    h += '</div>';
+  });
+  document.getElementById('calc-job-grid').innerHTML = h;
 }
-function rrow(ic,nm,vl,nt){
-  return '<div class="result-row"><div class="result-ico">'+ic+'</div><div style="flex:1;"><div class="result-main">'+nm+'</div><div class="result-note">'+nt+'</div></div><div class="result-val">'+vl+'</div></div>';
+
+function selectCalcJob(i) {
+  var job = CALC_JOBS[i];
+  if(job.custom) { setCalcMode('custom'); return; }
+  selectedJob = i;
+  selectedPreset = 0;
+  renderCalcJobs();
+  
+  // Show tank input and preset selector
+  var detail = document.getElementById('calc-job-detail');
+  detail.style.display = 'block';
+  
+  // Render mix presets
+  var h = '<div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Mix Protocol</div>';
+  job.presets.forEach(function(p, pi) {
+    h += '<button class="mix-preset-btn'+(pi===selectedPreset?' sel':'') + '" onclick="selectPreset('+pi+')">';
+    h += '<span>'+p.name+'</span>';
+    h += '<span style="font-size:16px;">'+(pi===selectedPreset?'✓':'')+'</span>';
+    h += '</button>';
+  });
+  document.getElementById('calc-job-mixes').innerHTML = h;
+  document.getElementById('calc-results').style.display = 'none';
+  
+  // Scroll to detail
+  setTimeout(function(){
+    document.getElementById('calc-scroll').scrollTop += 200;
+  },100);
 }
+
+function selectPreset(pi) {
+  selectedPreset = pi;
+  if(selectedJob !== null) {
+    var job = CALC_JOBS[selectedJob];
+    var h = '<div style="font-size:10px;color:var(--text3);letter-spacing:0.14em;text-transform:uppercase;font-weight:700;margin-bottom:8px;">Mix Protocol</div>';
+    job.presets.forEach(function(p, i) {
+      h += '<button class="mix-preset-btn'+(i===pi?' sel':'') + '" onclick="selectPreset('+i+')">';
+      h += '<span>'+p.name+'</span>';
+      h += '<span style="font-size:16px;">'+(i===pi?'✓':'')+'</span>';
+      h += '</button>';
+    });
+    document.getElementById('calc-job-mixes').innerHTML = h;
+  }
+}
+
+function calcJobMix() {
+  var tank = parseFloat(document.getElementById('job-tank').value);
+  if(!tank || tank <= 0) { showToast('Please enter your tank size'); return; }
+  if(selectedJob === null) { showToast('Please select a job type'); return; }
+  
+  var job = CALC_JOBS[selectedJob];
+  var preset = job.presets[selectedPreset || 0];
+  
+  var rows = '';
+  var orderNum = 1;
+  
+  preset.chems.forEach(function(chem) {
+    var amount = '';
+    var note = chem.note || '';
+    var icon = chem.name.toLowerCase().includes('water') ? '💧' :
+               chem.name.toLowerCase().includes('sh') ? '🧪' :
+               chem.name.toLowerCase().includes('surfactant') || chem.name.toLowerCase().includes('elemon') ? '🫧' :
+               chem.name.toLowerCase().includes('f9') ? '⚗️' :
+               chem.name.toLowerCase().includes('oxalic') || chem.name.toLowerCase().includes('percarbonate') ? '🔬' :
+               chem.name.toLowerCase().includes('purple') || chem.name.toLowerCase().includes('degreaser') ? '🟣' : '🧴';
+    
+    if(chem.fill) {
+      // Calculate fill amount from remaining
+      var used = 0;
+      preset.chems.forEach(function(c2) {
+        if(!c2.fill) {
+          if(c2.unit === 'pct') used += (c2.pct/100) * tank;
+          else if(c2.unit === 'oz_per_gal') used += 0; // oz don't count to gal
+          else if(c2.unit === 'cups_per_gal') used += 0;
+          else if(c2.unit === 'ratio') {
+            var total = c2.ratio_num + c2.ratio_den;
+            used += (c2.ratio_num / total) * tank;
+          }
+        }
+      });
+      var fillAmt = tank - used;
+      amount = fillAmt.toFixed(1) + ' gal';
+      note = 'Add first — fill to ' + fillAmt.toFixed(1) + ' gal then add chemicals';
+    } else if(chem.unit === 'pct') {
+      if(chem.pct === 100) {
+        amount = tank.toFixed(1) + ' gal (full strength)';
+      } else {
+        var gallons = (chem.pct / 100) * tank;
+        amount = gallons.toFixed(1) + ' gal';
+      }
+    } else if(chem.unit === 'oz_per_gal') {
+      var totalOz = chem.oz_per_gal * tank;
+      amount = totalOz.toFixed(0) + ' oz (' + (totalOz/128).toFixed(2) + ' gal)';
+    } else if(chem.unit === 'cups_per_gal') {
+      var cups = chem.cups_per_gal * tank;
+      var oz = cups * 8;
+      amount = cups.toFixed(1) + ' cups (' + oz.toFixed(0) + ' oz)';
+    } else if(chem.unit === 'ratio') {
+      var total = chem.ratio_num + chem.ratio_den;
+      var chemGal = (chem.ratio_num / total) * tank;
+      var waterGal = (chem.ratio_den / total) * tank;
+      if(chem.ratio_partner) {
+        amount = waterGal.toFixed(1) + ' gal';
+      } else {
+        amount = chemGal.toFixed(1) + ' gal';
+        note = chem.note + ' — makes ' + tank.toFixed(0) + ' gal total';
+      }
+    }
+    
+    var isFill = chem.fill || (chem.unit === 'ratio' && chem.ratio_partner);
+    rows += '<div class="calc-result-row">';
+    rows += '<div style="width:24px;text-align:center;font-size:16px;">' + icon + '</div>';
+    rows += '<div style="flex:1;">';
+    rows += '<div style="font-size:13px;font-weight:700;color:var(--text);">';
+    if(!isFill) rows += '<span style="color:var(--text3);font-size:11px;font-weight:600;">Step '+orderNum+'  </span>';
+    rows += chem.name + '</div>';
+    if(note) rows += '<div style="font-size:11px;color:var(--text3);margin-top:2px;">'+note+'</div>';
+    rows += '</div>';
+    rows += '<div style="font-size:14px;font-weight:800;color:var(--green);white-space:nowrap;">' + amount + '</div>';
+    rows += '</div>';
+    if(!isFill) orderNum++;
+  });
+
+  document.getElementById('calc-result-label').textContent = job.label + ' — ' + preset.name + ' (' + tank + ' gal tank)';
+  document.getElementById('calc-result-rows').innerHTML = rows;
+  
+  var warn = document.getElementById('calc-result-warn');
+  if(preset.warn) { warn.style.display='block'; warn.textContent='⚠ '+preset.warn; }
+  else { warn.style.display='none'; }
+  
+  document.getElementById('calc-result-notes').textContent = preset.notes || '';
+  document.getElementById('calc-results').style.display = 'block';
+  setTimeout(function(){
+    document.getElementById('calc-results').scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
+}
+
+// ── CUSTOM MODE ──
+function initCustomMode() {
+  customChemCount = 0;
+  document.getElementById('custom-chem-list').innerHTML = '';
+  addCustomChem();
+  addCustomChem();
+}
+
+function addCustomChem() {
+  customChemCount++;
+  var id = customChemCount;
+  var h = '<div class="custom-chem-row" id="ccrow-'+id+'">';
+  h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">';
+  h += '<div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;">Chemical '+id+'</div>';
+  h += '<button class="remove-chem-btn" onclick="removeCustomChem('+id+')">Remove</button>';
+  h += '</div>';
+  h += '<select class="custom-chem-select" id="ccname-'+id+'" onchange="updateChemUnits('+id+')">';
+  h += '<option value="">— Select Chemical —</option>';
+  CUSTOM_CHEMS.forEach(function(c) {
+    h += '<option value="'+c.name+'">'+c.name+'</option>';
+  });
+  h += '</select>';
+  h += '<div class="custom-conc-row">';
+  h += '<input class="custom-conc-input" type="number" id="ccamt-'+id+'" placeholder="Amount" step="any"/>';
+  h += '<select class="custom-chem-select" id="ccunit-'+id+'" style="margin-bottom:0;min-width:130px;">';
+  h += '<option value="pct">% final conc</option>';
+  h += '<option value="ratio_chem">ratio (chem part)</option>';
+  h += '<option value="oz_per_gal">oz per gallon</option>';
+  h += '<option value="cups_per_gal">cups per gallon</option>';
+  h += '<option value="oz_total">oz total</option>';
+  h += '<option value="tbsp_per_gal">tbsp per gallon</option>';
+  h += '<option value="fill">fill remainder</option>';
+  h += '</select>';
+  h += '</div>';
+  h += '</div>';
+  document.getElementById('custom-chem-list').insertAdjacentHTML('beforeend', h);
+}
+
+function removeCustomChem(id) {
+  var el = document.getElementById('ccrow-'+id);
+  if(el) el.remove();
+}
+
+function updateChemUnits(id) {
+  // Could update available units per chemical type — simplified for now
+}
+
+function calcCustomMix() {
+  var tankVal = parseFloat(document.getElementById('custom-tank').value);
+  var unit = document.getElementById('custom-unit').value;
+  if(!tankVal || tankVal<=0) { showToast('Please enter a container size'); return; }
+  
+  // Convert to gallons
+  var tankGal = tankVal;
+  if(unit==='qt') tankGal = tankVal / 4;
+  else if(unit==='oz') tankGal = tankVal / 128;
+  else if(unit==='L') tankGal = tankVal * 0.264172;
+  
+  var rows = '';
+  var hasFill = false;
+  var usedGal = 0;
+  var chems = [];
+  
+  // Collect all rows
+  var allRows = document.querySelectorAll('.custom-chem-row');
+  allRows.forEach(function(row) {
+    var rowId = row.id.replace('ccrow-','');
+    var name = document.getElementById('ccname-'+rowId) ? document.getElementById('ccname-'+rowId).value : '';
+    var amt = parseFloat(document.getElementById('ccamt-'+rowId) ? document.getElementById('ccamt-'+rowId).value : 0);
+    var unitType = document.getElementById('ccunit-'+rowId) ? document.getElementById('ccunit-'+rowId).value : 'pct';
+    if(!name) return;
+    chems.push({name:name, amt:amt, unit:unitType});
+  });
+  
+  if(chems.length === 0) { showToast('Please add at least one chemical'); return; }
+  
+  // Calculate amounts
+  var stepNum = 1;
+  chems.forEach(function(c) {
+    var amount = '';
+    var amtGal = 0;
+    var icon = c.name.toLowerCase().includes('water') ? '💧' :
+               c.name.toLowerCase().includes('sh') ? '🧪' :
+               c.name.toLowerCase().includes('elemon') || c.name.toLowerCase().includes('surfact') ? '🫧' :
+               c.name.toLowerCase().includes('f9') || c.name.toLowerCase().includes('acid') ? '⚗️' : '🧴';
+    
+    if(c.unit==='fill') {
+      hasFill = {name:c.name, icon:icon};
+      return;
+    } else if(c.unit==='pct') {
+      amtGal = (c.amt/100) * tankGal;
+      var amtOrig = amtGal;
+      if(unit==='qt') amtOrig = amtGal * 4;
+      else if(unit==='oz') amtOrig = amtGal * 128;
+      else if(unit==='L') amtOrig = amtGal / 0.264172;
+      amount = amtGal.toFixed(2) + ' gal (' + amtOrig.toFixed(1) + ' ' + unit + ')';
+    } else if(c.unit==='oz_per_gal') {
+      var totalOz = c.amt * tankGal;
+      amount = totalOz.toFixed(1) + ' oz';
+      amtGal = 0;
+    } else if(c.unit==='cups_per_gal') {
+      var totalCups = c.amt * tankGal;
+      amount = totalCups.toFixed(1) + ' cups (' + (totalCups*8).toFixed(0) + ' oz)';
+      amtGal = 0;
+    } else if(c.unit==='tbsp_per_gal') {
+      var totalTbsp = c.amt * tankGal;
+      amount = totalTbsp.toFixed(1) + ' tbsp (' + (totalTbsp/2).toFixed(1) + ' oz)';
+      amtGal = 0;
+    } else if(c.unit==='oz_total') {
+      amount = c.amt.toFixed(1) + ' oz total';
+      amtGal = 0;
+    } else if(c.unit==='ratio_chem') {
+      amtGal = (c.amt / (c.amt + 1)) * tankGal;
+      var waterGal = tankGal - amtGal;
+      amount = amtGal.toFixed(2) + ' gal chem + ' + waterGal.toFixed(2) + ' gal water';
+    }
+    
+    usedGal += amtGal;
+    rows += '<div class="calc-result-row">';
+    rows += '<div style="width:24px;text-align:center;font-size:16px;">'+icon+'</div>';
+    rows += '<div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--text);">';
+    rows += '<span style="color:var(--text3);font-size:11px;font-weight:600;">Step '+stepNum+'  </span>';
+    rows += c.name+'</div></div>';
+    rows += '<div style="font-size:14px;font-weight:800;color:var(--green);white-space:nowrap;">'+amount+'</div>';
+    rows += '</div>';
+    stepNum++;
+  });
+  
+  // Fill remainder
+  if(hasFill) {
+    var fillGal = tankGal - usedGal;
+    if(fillGal < 0) fillGal = 0;
+    var fillOrig = fillGal;
+    if(unit==='qt') fillOrig = fillGal*4;
+    else if(unit==='oz') fillOrig = fillGal*128;
+    else if(unit==='L') fillOrig = fillGal/0.264172;
+    rows = '<div class="calc-result-row"><div style="width:24px;text-align:center;font-size:16px;">'+hasFill.icon+'</div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--text);">'+hasFill.name+'</div><div style="font-size:11px;color:var(--text3);margin-top:2px;">Add first — fill to '+fillGal.toFixed(2)+' gal then add chemicals</div></div><div style="font-size:14px;font-weight:800;color:var(--green);white-space:nowrap;">'+fillOrig.toFixed(1)+' '+unit+'</div></div>' + rows;
+  }
+  
+  document.getElementById('calc-result-label').textContent = 'Custom Mix — ' + tankVal + ' ' + unit + ' container';
+  document.getElementById('calc-result-rows').innerHTML = rows;
+  document.getElementById('calc-result-warn').style.display = 'none';
+  document.getElementById('calc-result-notes').textContent = 'Always add water first, then chemicals. Keep SH away from acids — never mix together.';
+  document.getElementById('calc-results').style.display = 'block';
+  setTimeout(function(){
+    document.getElementById('calc-results').scrollIntoView({behavior:'smooth',block:'start'});
+  },100);
+}
+
+function resetCalc() {
+  document.getElementById('calc-results').style.display = 'none';
+  document.getElementById('calc-job-detail').style.display = 'none';
+  selectedJob = null;
+  selectedPreset = null;
+  renderCalcJobs();
+  document.getElementById('calc-scroll').scrollTop = 0;
+  if(calcMode === 'custom') initCustomMode();
+}
+
+// Init on load
+function initCalc() {
+  renderCalcJobs();
+}
+
 
 // CHEM
 var cTab="driveways",cJob=0,cView="jobs",cStep=-1;
@@ -993,6 +1518,81 @@ var CD={
       ],
       warns:["Solvents can damage asphalt sealcoat, painted curbs, and nearby expansion joint sealant — mask and protect edges.","Graffiti removers contain strong VOCs — wear respirator and nitrile gloves. Do not use in enclosed spaces.","Turbo nozzle on soft or old concrete can etch and pit the surface — test in a corner first.","Fresh graffiti (under 24 hrs) is dramatically easier to remove than old graffiti — quote accordingly."],
       tips:["Taginator is the professional standard for graffiti — retail stores are not going to have this, order from a pressure washing supply distributor.","If graffiti is deeply set into porous concrete, mechanical grinding by a concrete contractor may be the only full solution — be honest with the customer.","After graffiti removal, upsell an anti-graffiti coating — makes future removal much easier and is a recurring service opportunity.","Document everything with timestamped photos before touching the surface — graffiti removal jobs can turn into liability disputes."]
+    },
+    {
+      name:"Red Clay Stains",
+      desc:"Iron oxide clay embedded in concrete, brick, foundation walls, pavers — extremely common in South and Central Texas",
+      steps:[
+        {s:"Pre-wet Everything",c:"Water",p:"N/A",m:"Thoroughly wet all landscaping, grass, and plants within 15 ft before starting. Pre-wet the stained concrete surface.",n:"Red clay remover is acid-based and will kill grass on direct contact. Pre-wetting is mandatory protection."},
+        {s:"Pre-Clean Surface",c:"Purple Power or SH",p:"1:5 dilution",m:"Apply Purple Power at 1:5 or SH house wash mix. Surface clean to open up concrete pores. Rinse well.",n:"Pre-cleaning first is proven to dramatically improve final results — the acid penetrates deeper into clean open pores. Let concrete dry completely before applying acid step."},
+        {s:"Let Surface Dry Completely",c:"N/A",p:"N/A",m:"Allow concrete to dry fully — minimum 30 min in direct sun, 60+ min in shade.",n:"Mandatory. Applying acid to wet concrete severely reduces effectiveness. Dry pores absorb the acid deeper."},
+        {s:"Apply Red Clay Remover",c:"F9 Barc or Oxalic Acid",p:"F9: 1 part water + 2 parts F9. Oxalic: 1.5 cups per gallon warm water",m:"PRIMARY — F9 Barc: Apply at 1 part water + 2 parts F9 via pump sprayer at 60-70 PSI using circular overlapping motion. Cover ENTIRE section — never spot spray first application. Apply from control joint to control joint. SECONDARY — Oxalic Acid: Dissolve 1.5 cups crystals in 1 gallon warm water. Apply generously with pump sprayer.",n:"F9 Barc is the industry standard for iron oxide clay. Watch for white foaming — acid reacting with iron oxide. Do NOT spot spray on first application — always cover the full section evenly to avoid a too-clean circle surrounded by stained concrete."},
+        {s:"Let Dry Into Concrete",c:"N/A",p:"N/A",m:"For F9 Barc on porous concrete: Let DRY COMPLETELY into surface — stains disappear as concrete dries (20-40 min). Do NOT rinse early. For Oxalic Acid: Keep WET during 5-15 min dwell — do NOT let dry.",n:"Most common mistake with F9: rinsing too early. The reaction continues as it dries. Watch the stain literally fade as the concrete dries. Be patient."},
+        {s:"Reactivate and Rinse",c:"Water",p:"N/A",m:"Once dry: wet surface to reactivate, lightly broom, rinse LIGHTLY with wand. Do NOT use surface cleaner for this rinse. If stain remains, let dry and repeat.",n:"Second pass: apply heavier on remaining stains, lighter on clean areas. Most jobs take 2 passes. Very old stains may take 3."},
+        {s:"Neutralize",c:"Baking Soda Solution",p:"1 cup per gallon water",m:"Apply baking soda solution to treated area, sit 3 min, rinse thoroughly.",n:"Stops remaining acid reaction. Never skip on brick or mortar — un-neutralized acid etches mortar joints invisibly after you leave."},
+        {s:"Upsell: Concrete Sealer",c:"Penetrating Concrete Sealer",p:"Per product label",m:"Once clean and fully dry (24 hrs minimum): apply penetrating sealer to prevent future clay from embedding in pores.",n:"Sealed concrete is dramatically easier to clean at the next service. Excellent package upsell."}
+      ],
+      warns:["NEVER pressure wash red clay without acid treatment first — high pressure alone drives clay deeper into pores and makes future removal much harder.","Red clay is extremely pigmented — if rinse water resettles on a cleaned section it re-stains. Wash settled runoff off cleaned areas immediately.","Acid runoff WILL kill grass — pre-wet thoroughly, contain where possible.","Do NOT apply F9 Barc to colored or stained concrete — may strip color. Test inconspicuous area first."],
+      tips:["Red clay is iron oxide — essentially rust from soil. Everything that works on rust works on red clay. F9 Barc is your best weapon.","Foundation walls with red clay splash-up from rain are extremely common in Central and South Texas — quote these as add-on packages on any job where you see them.","Always photograph red clay before and after — the transformation is dramatic and makes excellent marketing content.","Pre-selling a sealer after clay removal dramatically reduces difficulty of future cleanings — natural and honest upsell."]
+    },
+    {
+      name:"Iron / Well Water Stains",
+      desc:"Orange-brown staining from iron-rich well water or irrigation systems — on concrete, siding, retaining walls, fences",
+      steps:[
+        {s:"Identify Stain Source",c:"N/A",p:"N/A",m:"Well water iron stains: uniform orange-brown discoloration on all surfaces hit by irrigation spray. Look for repeating spray pattern corresponding to sprinkler head positions. Fertilizer iron: scattered orange speckles near lawn edges.",n:"Understanding the source matters — well water stains return if irrigation continues hitting the surface. Set customer expectation upfront before starting."},
+        {s:"Pre-wet",c:"Water",p:"N/A",m:"Wet all landscaping and stained surfaces.",n:"Iron stain removers are acid-based — protect all plants and grass."},
+        {s:"Apply F9 Barc (Surface-Specific)",c:"F9 Barc or Oxalic Acid",p:"Concrete/brick porous: 1 water + 2 F9. Vinyl/stucco semi-porous: 1:1. Sealed surfaces: 2:1 water to F9",m:"PRIMARY — F9 Barc: apply at dilution for that surface type via pump sprayer. SECONDARY — Oxalic Acid: 1 cup crystals per gallon warm water. Works on all surfaces.",n:"Dilution and dwell time varies by surface — this is critical. Getting it wrong gets poor results or damages the surface."},
+        {s:"Dwell",c:"N/A",p:"N/A",m:"CONCRETE/BRICK (porous): Let DRY completely into surface (20-40 min). VINYL/STUCCO: Dwell 5-10 min WET — watch stain fade, rinse when gone. Do NOT let dry on vinyl. WOOD: 5-8 min wet then rinse.",n:"On vinyl: watch closely — F9 Barc on siding works fast. Rinse before 10 min maximum. Never let it dry on non-porous surfaces."},
+        {s:"Rinse",c:"Water",p:"1,200-2,500 PSI depending on surface",m:"CONCRETE: Wet to reactivate, lightly broom, light wand rinse. VINYL: 1,000-1,500 PSI soft wash rinse. WOOD: 600-800 PSI with grain.",n:""},
+        {s:"Neutralize (Masonry Only)",c:"Baking Soda Solution",p:"1 cup per gallon",m:"Apply to any concrete, brick, or stone surfaces. Rinse.",n:"Vinyl and painted surfaces do not need neutralization."},
+        {s:"Customer Advisory",c:"N/A",p:"N/A",m:"Stain WILL return if irrigation continues spraying iron-rich water on surfaces. Recommend: (1) Iron filtration on irrigation, (2) Redirect sprinkler heads, (3) Drip irrigation near foundation.",n:"This advisory protects you from callbacks and positions you as the recurring maintenance provider."}
+      ],
+      warns:["Well water iron stains WILL return if the irrigation source is not addressed — communicate this clearly before starting.","F9 Barc on vinyl siding must NOT dry — apply and rinse before 10 minutes. Dried F9 on vinyl leaves white mineral deposits that are hard to remove.","Do NOT use F9 Barc on chrome, polished aluminum, or glass — permanent etching.","Neutralize all acid treatments on masonry."],
+      tips:["Well water iron stains are one of the most common jobs in South Texas — every subdivision on well water is a potential customer.","Offer a 6-month or 12-month recurring maintenance contract — staining returns predictably so you can schedule it in advance.","The orange-to-white transformation on concrete and siding makes outstanding before/after marketing content."]
+    },
+    {
+      name:"Battery Acid / Fertilizer Stains",
+      desc:"Orange flash burn from battery acid leaks on driveways — also fertilizer iron speckles near lawn edges",
+      steps:[
+        {s:"Identify Stain",c:"N/A",p:"N/A",m:"BATTERY ACID: Large orange flash burn near where vehicle or golf cart parks. May extend in drip pattern. FERTILIZER IRON: Small concentrated orange speckles near lawn edge. NOTE: White battery acid stain that has leached through the full slab CANNOT be removed — orange and amber stains are treatable.",n:"Confirm with customer before starting — if the stain is white all the way through, no product can remove it. Orange/amber responds well to F9 Barc."},
+        {s:"Pre-Clean",c:"Degreaser",p:"1:5",m:"Power wash full concrete pad with degreaser and surface cleaner. Open the pores first.",n:"Pre-cleaning dramatically improves F9 Barc penetration and final result."},
+        {s:"Dry Surface",c:"N/A",p:"N/A",m:"Let dry completely — minimum 30 min direct sun.",n:"F9 Barc on porous concrete requires dry application."},
+        {s:"Apply F9 Barc",c:"F9 Barc",p:"1 part water + 2 parts F9 Barc",m:"Apply via pump sprayer at 60-70 PSI, circular overlapping motion, cover ENTIRE pad. Do NOT spot spray first application. Apply heavier on stained areas. F9 should foam and turn white.",n:"Never spot spray on first pass — you will create a too-clean area surrounded by stained concrete."},
+        {s:"Let Dry — Watch Stain Fade",c:"N/A",p:"N/A",m:"Do NOT rinse. Let dry completely into concrete (20-40 min). Orange stain fades as concrete dries.",n:"Rinsing early is the most common mistake. The reaction is still happening as it dries. Wait."},
+        {s:"Reactivate and Rinse",c:"Water",p:"N/A",m:"Wet surface, lightly broom, light wand rinse. Evaluate. If stain remains — repeat application.",n:"Second pass: spot apply more heavily on remaining stain areas."},
+        {s:"Neutralize",c:"Baking Soda Solution",p:"1 cup per gallon",m:"Apply, wait 3 min, rinse.",n:""}
+      ],
+      warns:["White battery acid stains that have leached through the full concrete slab CANNOT be removed — be upfront with customer before starting.","Do NOT spot spray on first F9 Barc application — creates a too-clean circle surrounded by stained concrete.","Never rinse F9 Barc off porous concrete before it has dried."],
+      tips:["Golf cart battery stains are extremely common in gated communities and retirement communities — excellent recurring revenue. Quote quarterly maintenance plans.","Fertilizer stains: advise customer to brush fertilizer granules off concrete before watering to prevent future staining."]
+    },
+    {
+      name:"Efflorescence (White Mineral Deposits)",
+      desc:"White chalky crystalline deposits on brick, concrete block, retaining walls, pavers — mineral salts pushed out by moisture migration",
+      steps:[
+        {s:"Assess and Dry Brush",c:"N/A",p:"N/A",m:"Fresh or light efflorescence: stiff nylon brush dry brushing often removes a significant portion before any water or chemical. Collect and dispose.",n:"Dry brushing alone can handle new construction efflorescence. Start here before chemicals."},
+        {s:"Rinse Test",c:"Water",p:"1,500-2,000 PSI",m:"Try a rinse first. Fresh efflorescence is water-soluble and may rinse off without chemicals.",n:"If it rinses away cleanly — done. If staining remains or returns after drying — proceed to acid treatment."},
+        {s:"Pre-wet Masonry",c:"Water",p:"N/A",m:"Thoroughly wet all brick and masonry before applying any acid. NEVER apply acid to dry brick.",n:"Dry masonry absorbs acid into the brick itself instead of working on the deposits. Pre-wetting is mandatory — always."},
+        {s:"Apply Acid Cleaner",c:"Sure Klean 600 or F9 Efflo",p:"Sure Klean: 1 part + 6-10 parts water. F9 Efflo: per label",m:"PRIMARY — Sure Klean 600: dilute 1:6 to 1:10, apply to pre-wet masonry, work bottom to top on vertical surfaces. SECONDARY — F9 Efflo: efflorescence-specific formula from Front 9. TERTIARY — Muriatic acid 1:10: last resort, more aggressive, higher damage risk.",n:"Work from bottom up on vertical masonry — prevents acid from running on dry brick below the work area. You will see fizzing — the acid reacting with mineral deposits."},
+        {s:"Dwell and Agitate",c:"N/A",p:"N/A",m:"3-5 min dwell. Light nylon brush agitation helps penetrate crystalline deposits.",n:""},
+        {s:"Rinse Thoroughly",c:"Water",p:"1,500-2,000 PSI",m:"Rinse from top down on vertical surfaces.",n:""},
+        {s:"Neutralize",c:"Baking Soda Solution",p:"1 cup per gallon",m:"Apply baking soda solution to all treated masonry, sit 3 min, rinse.",n:"Non-negotiable on brick and mortar. Un-neutralized acid continues etching mortar joints after you leave — customer will see continued deterioration and blame you."}
+      ],
+      warns:["NEVER apply acid to dry brick or masonry — always pre-wet first.","Efflorescence WILL return if the underlying moisture intrusion source is not addressed — set this expectation clearly before starting.","Do NOT use muriatic acid on soft or historic brick — use buffered acids (Sure Klean, F9 Efflo) on all residential masonry.","Neutralize completely — acid left on mortar causes invisible ongoing damage."],
+      tips:["Efflorescence on new construction cleans up dramatically — great before/after marketing content.","If customer has recurring efflorescence on a retaining wall or foundation, the source is water penetration — recommend a drainage or waterproofing consultation. Pointing this out builds trust.","Sealing after efflorescence removal dramatically slows recurrence — natural upsell."]
+    },
+    {
+      name:"Tire Marks & Rubber Stains",
+      desc:"Hot tire pickup, skid marks, and rubber deposits on driveways, parking lots, and garage floors",
+      steps:[
+        {s:"Assess Stain Age",c:"N/A",p:"N/A",m:"Fresh marks (few months): surface rubber deposit, responds well to degreaser. Old hot tire pickup: rubber chemically bonded to concrete — may lighten significantly but rarely 100% removal.",n:"Hot tire pickup is a chemical bond between tire polymers and concrete. Manage customer expectations before starting — quote as best-effort, not guaranteed full removal."},
+        {s:"Pre-wet",c:"Water",p:"N/A",m:"Wet surface.",n:""},
+        {s:"Apply Degreaser",c:"Purple Power or F9 Double Eagle",p:"Full strength to 1:3",m:"PRIMARY — Heavy marks: full strength Purple Power. Agitate immediately with stiff brush. SECONDARY — F9 Double Eagle: alkaline degreaser formulated for concrete, excellent on tire marks. TERTIARY — Citrus degreaser (Simple Green, Zep Orange): effective on fresh marks, gentler option.",n:"Brush agitation is critical on tire marks — the rubber needs mechanical breakdown. Apply and scrub before it dries."},
+        {s:"Dwell",c:"N/A",p:"N/A",m:"5-10 min. Keep wet.",n:""},
+        {s:"Rinse at High Pressure",c:"Water",p:"2,500-3,500 PSI with surface cleaner",m:"Run surface cleaner at full pressure. Multiple passes if needed.",n:"Hot water (180+ degrees) dramatically improves tire mark removal if you have a hot water unit. Cold water requires more passes."},
+        {s:"Repeat or Escalate",c:"Solvent degreaser",p:"Per label",m:"If marks remain: solvent-based degreaser or specialty rubber remover, dwell 10-15 min with brush, high pressure rinse.",n:"Some rubber compounds require solvent rather than alkaline cleaner to break the bond."}
+      ],
+      warns:["Hot tire pickup may not come 100% clean — set this expectation before starting. Quote as best-effort treatment.","High PSI wand (3,500+) can etch residential concrete — use surface cleaner or stay at 2,500-3,000 PSI.","Do NOT use flammable solvents in enclosed garages without ventilation."],
+      tips:["Hot water machines make tire mark removal dramatically faster and more effective — one of the best arguments for a hot water unit when your business grows.","Garage floor tire marks combined with general concrete cleaning is a great package upsell.","Many customers with hot tire pickup do not realize it is a chemical bond — explaining this builds credibility."]
     }
   ]},
   houses:{label:"Houses",icon:"🏠",jobs:[
@@ -1081,6 +1681,33 @@ var CD={
       ],
       warns:["NEVER use muriatic acid on aluminum — causes immediate black staining and corrosion that cannot be reversed.","High pressure DENTS aluminum panels — stay at 2,000 PSI maximum and never get too close.","Old aluminum siding sometimes contains lead paint (pre-1978 homes) — if paint is peeling or chipping, test before washing. Lead paint regulations apply to pressure washing runoff in many states.","Aluminum oxidation is permanent UV damage to the paint — brightener restores appearance but does not fix the underlying paint degradation. New paint is the only real long-term solution."],
       tips:["Oxidation restoration is a high-value upsell that most homeowners don't know is possible — show them a before and after on one test section and watch their reaction.","For heavily oxidized panels, a light scrub with a soft-bristle brush after applying brightener dramatically improves results.","After restoration, recommend a ceramic coating or paint sealant for aluminum — extends the restored look and is a premium add-on service.","Aluminum siding homes are often older — scope the job carefully for damaged panels, gaps, and areas where water intrusion is already occurring."]
+    },
+    {
+      name:"Well Water / Iron Stains on Siding",
+      desc:"Orange-brown discoloration from iron-rich well water irrigation hitting siding, trim, and brick at consistent heights",
+      steps:[
+        {s:"Identify Spray Pattern",c:"N/A",p:"N/A",m:"Iron stains from irrigation create repeating orange-brown discoloration at consistent heights on siding corresponding to sprinkler head positions. Document stained vs clean areas.",n:"Understanding the spray pattern helps you quote accurately and helps the customer understand the source."},
+        {s:"Pre-wet Landscaping",c:"Water",p:"N/A",m:"Saturate all plants, grass, and landscaping before applying any chemicals.",n:"Acid runoff will harm or kill plants. Pre-wetting provides critical protection."},
+        {s:"Apply F9 Barc to Siding",c:"F9 Barc or Oxalic Acid",p:"Vinyl/painted: 1:1 water to F9. Sealed/non-porous: 2:1 water to F9",m:"PRIMARY — F9 Barc at 1:1: apply with pump sprayer or 12V system. Apply bottom to top to prevent runs on dry surface below. Watch closely — do NOT let dry on vinyl. SECONDARY — Oxalic Acid: 1 cup per gallon warm water. Gentle enough for vinyl, effective on light to moderate iron staining.",n:"CRITICAL: F9 Barc on vinyl siding must NOT dry — apply and watch. Orange stain will fade visibly within 3-8 minutes. Rinse as soon as stain is gone or before 10 minutes maximum."},
+        {s:"Watch and Rinse When Gone",c:"Water",p:"1,000-1,500 PSI",m:"Watch treated area — orange staining fades from brown to tan to clear. Rinse with soft wash pressure when stain is gone. Do NOT use high pressure on vinyl or painted wood siding.",n:"The reaction on siding is faster than on concrete. Most residential iron stains on vinyl are gone within 5-8 minutes."},
+        {s:"Follow with Standard House Wash",c:"SH + Elemonator",p:"1.5-2% SH final",m:"Apply standard house wash after iron treatment to clean remaining mold, mildew, and to leave siding looking its best.",n:"Combining iron stain removal with a house wash is a natural package — quote as a complete service."},
+        {s:"Customer Advisory",c:"N/A",p:"N/A",m:"Advise clearly: staining WILL return if iron-rich irrigation continues. Options: (1) Iron filter on irrigation line, (2) Redirect sprinkler heads away from structure, (3) Schedule recurring maintenance every 6-12 months.",n:"This advisory protects you from callback complaints and positions you as the recurring provider."}
+      ],
+      warns:["F9 Barc on vinyl siding MUST NOT be allowed to dry — apply, watch, rinse when stain is gone. White mineral deposits from dried F9 on vinyl are very hard to remove.","Iron stains WILL return if irrigation source is not addressed — communicate clearly before starting.","Do NOT use F9 Barc on chrome, polished metal, glass, or aluminum gutters without testing."],
+      tips:["Iron staining from well water irrigation is extremely common in South and Central Texas — every home in a subdivision on well water is a potential customer.","Offer 6-month and 12-month maintenance contracts — the staining returns predictably, so you can schedule it in advance.","The visual result on iron-stained vinyl siding is dramatic and fast — take before/after photos for marketing on every job.","If the whole house is stained, quote the full siding wash plus iron treatment as one package."]
+    },
+    {
+      name:"Red Clay Stains on Siding & Foundation",
+      desc:"Iron oxide clay splash-up on foundation walls, siding base, and brick from rain splash — extremely common in Central and South Texas",
+      steps:[
+        {s:"Pre-wet All Surfaces",c:"Water",p:"N/A",m:"Thoroughly wet all landscaping and pre-wet the stained siding and foundation surfaces.",n:"Acid-based removers will harm plants. Pre-wetting siding helps control the acid reaction."},
+        {s:"Apply Clay Remover",c:"F9 Barc or Oxalic Acid",p:"Vinyl/painted: 1:1 water to F9. Brick/masonry: 1 water + 2 parts F9",m:"PRIMARY — F9 Barc: apply at appropriate dilution for surface type. On vinyl and painted surfaces: apply, dwell 5-8 min wet, rinse when stain is gone — do NOT let dry. On brick/masonry: let dry into surface 15-20 min. SECONDARY — Oxalic Acid: 1 cup per gallon warm water. Apply to pre-wet surface, dwell 5-10 min wet, rinse.",n:"Red clay on siding is iron oxide — same treatment as rust or well water stains. F9 Barc is the most effective product for iron-based staining on all surfaces."},
+        {s:"Rinse",c:"Water",p:"1,000-1,500 PSI on vinyl. 1,500-2,000 PSI on brick",m:"Rinse thoroughly. For brick: wet to reactivate, lightly brush, then rinse.",n:""},
+        {s:"Neutralize (Brick Only)",c:"Baking Soda Solution",p:"1 cup per gallon",m:"Apply to brick and masonry surfaces. Rinse.",n:"Not needed on vinyl or painted surfaces."},
+        {s:"Follow with House Wash",c:"SH + Elemonator",p:"1.5-2% SH",m:"Apply standard house wash to complete the job — addresses any remaining mold, mildew, and general soiling.",n:"Clay removal plus full house wash is a natural complete package. Quote it as a bundle."}
+      ],
+      warns:["F9 Barc on vinyl siding must NOT dry — watch and rinse when stain fades.","Do NOT apply to colored mortar or decorative masonry without testing first — may lighten color.","Neutralize brick and masonry after acid treatment."],
+      tips:["Foundation red clay splash-up from rain is one of the most common visual problems on homes in Central Texas — look for this on every job and offer it as an add-on.","Combining red clay foundation cleaning with the house wash is a great upsell — the customer is already paying for the soft wash equipment to be on site.","Before/after photos of clay-stained vs clean white vinyl siding make excellent social media content."]
     }
   ]},
   roofs:{label:"Roofs",icon:"🏚️",jobs:[
@@ -2085,6 +2712,72 @@ var SDS_DB = {
     emergency: "CHEMTREC: 1-800-424-9300 | Poison Control: 1-800-222-1222",
     suppliers: ["Taginator (manufacturer direct)", "Pressure washing distributors", "Janitorial supply"],
     tips: "Most effective on spray paint graffiti. Apply, dwell 3-5 min, agitate with stiff brush, rinse. Fresh graffiti (under 48 hrs) removes much easier than old."
+  },
+  "F9 Efflo": {
+    aka: ["F9 Efflorescence Remover","Efflo","Front 9 Efflo"],
+    type: "Buffered Acid / Efflorescence Remover",
+    appearance: "Clear liquid with mild acidic odor",
+    concentration: "Concentrate — dilute 1:5 to 1:10",
+    uses: ["Efflorescence removal from brick, concrete block, pavers, retaining walls","Mineral deposit removal from masonry","New construction masonry cleaning","Calcium and lime deposit removal"],
+    ppeRequired: ["Chemical-resistant gloves (nitrile minimum)","Chemical splash goggles","Closed-toe shoes"],
+    hazards: ["Acid-based — causes skin and eye irritation","Corrosive to metals","Do NOT let contact plants — rinse vegetation before and after","Do NOT mix with SH or bleach"],
+    firstAid: {
+      skin: "Flush with water for 15 minutes. Seek medical attention if irritation persists.",
+      eyes: "Flush immediately with water for 20 minutes. Seek emergency medical attention.",
+      ingestion: "Do NOT induce vomiting. Rinse mouth. Call Poison Control: 1-800-222-1222.",
+      inhalation: "Move to fresh air. Seek medical attention if symptoms persist."
+    },
+    mixing: ["Standard efflorescence: 1 part F9 Efflo + 5-10 parts water","Heavy deposits: 1 part F9 Efflo + 3-5 parts water","ALWAYS apply to pre-wet masonry — never to dry brick","Apply bottom to top on vertical surfaces"],
+    storage: ["Sealed container, cool dry ventilated area","Away from metals and direct sunlight","Do NOT store near SH or alkaline products"],
+    disposal: "Neutralize with baking soda before disposal. Do NOT pour down storm drains.",
+    shelfLife: "2+ years sealed. Use diluted solution same day.",
+    emergency: "CHEMTREC: 1-800-424-9300. Manufacturer: f9products.com",
+    whereToBuy: "f9products.com direct. Some pressure washing distributors.",
+    proTips: ["Always pre-wet masonry before applying — most important step","Neutralize with baking soda solution after rinsing — non-negotiable on brick and mortar","Efflorescence returns if moisture intrusion source is not addressed — advise customer"]
+  },
+  "F9 Double Eagle": {
+    aka: ["F9 Double Eagle Degreaser","Double Eagle","F9 DE"],
+    type: "Alkaline Degreaser / Concrete Cleaner",
+    appearance: "Clear to light amber liquid with mild detergent odor",
+    concentration: "Concentrate — dilute 1:5 to 1:20",
+    uses: ["Concrete pre-cleaning before F9 Barc application","General concrete degreasing","Tire mark removal","Oil and grease on concrete","Neutralizer for acidic F9 products","Compatible with SH house wash mixes (bleach stable)"],
+    ppeRequired: ["Chemical-resistant gloves","Eye protection","Closed-toe shoes"],
+    hazards: ["Alkaline at full strength — skin and eye irritation","Do NOT mix with strong acids","Keep away from eyes"],
+    firstAid: {
+      skin: "Flush with water for 15 minutes.",
+      eyes: "Flush with water for 20 minutes. Seek emergency medical attention.",
+      ingestion: "Rinse mouth. Call Poison Control: 1-800-222-1222.",
+      inhalation: "Move to fresh air."
+    },
+    mixing: ["General concrete: 1:10 to 1:20","Heavy oil/grease: 1:5 or full strength","Tire marks: 1:3 to full strength with brush agitation","Neutralizing F9 acid products: 1:10 applied after acid treatment"],
+    storage: ["Room temperature, sealed container","Away from strong acids","No special requirements"],
+    disposal: "Rinse down drain with large amounts of water. Biodegradable.",
+    shelfLife: "2+ years sealed.",
+    emergency: "Manufacturer: f9products.com",
+    whereToBuy: "f9products.com direct. Pressure washing distributors.",
+    proTips: ["Pre-cleaning concrete with Double Eagle BEFORE F9 Barc dramatically improves rust and battery acid stain removal","Being bleach-stable means it can be added to house wash mixes — rare for a degreaser","Buy together with F9 Barc — they work as a system"]
+  },
+  "Penetrating Concrete Sealer": {
+    aka: ["Concrete Sealer","Masonry Sealer","Silane Sealer","Siloxane Sealer"],
+    type: "Surface Protectant / Sealer",
+    appearance: "Clear liquid — water or solvent based depending on product",
+    concentration: "Ready to use — do NOT dilute",
+    uses: ["Sealing cleaned concrete to prevent future staining","Protecting brick after efflorescence treatment","Preventing red clay re-absorption into concrete","Sealing pavers after cleaning","Post-cleaning surface protection package"],
+    ppeRequired: ["Chemical-resistant gloves","Eye protection","Solvent-based: organic vapor respirator required","Closed-toe shoes — slippery when wet"],
+    hazards: ["Solvent-based: flammable — keep away from open flame","Vapors in enclosed spaces — ventilate well","Slippery on surfaces when wet — cordon off treated area","Water-based sealers: much lower hazard"],
+    firstAid: {
+      skin: "Wash with soap and water. Solvent-based may require mineral spirits to remove.",
+      eyes: "Flush with water for 15 minutes. Seek medical attention.",
+      ingestion: "Call Poison Control: 1-800-222-1222.",
+      inhalation: "Move to fresh air. Seek medical attention if symptoms persist."
+    },
+    mixing: ["Ready to use — do NOT dilute","Apply to completely DRY surface — minimum 24 hours after washing","Two coats recommended on porous concrete — apply second coat while first is still tacky","Apply with pump sprayer or roller at manufacturer specified rate"],
+    storage: ["Sealed container in cool dry area","Solvent-based: away from heat and flame — flammable","Water-based: protect from freezing"],
+    disposal: "Solvent-based: hazardous waste disposal. Water-based: allow to dry before disposal. Do NOT pour down storm drains.",
+    shelfLife: "1-3 years sealed. Check manufacturer label.",
+    emergency: "Varies by product — check label.",
+    whereToBuy: "Home Depot, Lowes, masonry supply. Brands: RadonSeal, Foundation Armor, Eagle Sealer.",
+    proTips: ["Surface must be completely dry before sealing — minimum 24 hours, 48 in humid conditions","Penetrating sealers (silane/siloxane) are better than film-forming sealers for driveways — do not peel or chip","Excellent upsell after any concrete or brick cleaning job — protects customer investment","Show the water-bead test on sealed vs unsealed — very persuasive demonstration"]
   }
 };
 
@@ -2482,9 +3175,7 @@ function makeChemLink(chemName) {
 
 // ── SDS MAIN SCREEN ──
 var sdsFilter = 'all';
-var sdsSearch = '';
-
-
+var sdsSearch = ''
 var SDS_CATEGORIES = {
   'Sodium Hypochlorite': 'oxidizer',
   'Elemonator': 'surfactant',
@@ -2501,7 +3192,10 @@ var SDS_CATEGORIES = {
   'Aluminum Brightener': 'acid',
   'Zep Purple Degreaser': 'alkaline',
   'Goo Gone Pro': 'solvent',
-  'Taginator': 'solvent'
+  'Taginator': 'solvent',
+  'F9 Efflo': 'acid',
+  'F9 Double Eagle': 'alkaline',
+  'Penetrating Concrete Sealer': 'other'
 };
 
 var SDS_ICONS = {
@@ -2528,7 +3222,10 @@ var SDS_HAZARD_LEVEL = {
   'Aluminum Brightener': {level:'high', label:'High Hazard'},
   'Zep Purple Degreaser': {level:'moderate', label:'Moderate Hazard'},
   'Goo Gone Pro': {level:'moderate', label:'Flammable — Moderate'},
-  'Taginator': {level:'high', label:'High — Flammable'}
+  'Taginator': {level:'high', label:'High — Flammable'},
+  'F9 Efflo': {level:'moderate', label:'Moderate Hazard'},
+  'F9 Double Eagle': {level:'low', label:'Low Hazard'},
+  'Penetrating Concrete Sealer': {level:'low', label:'Low — Solvent Vapors'}
 };
 
 var HAZARD_COLORS = {
@@ -2984,7 +3681,67 @@ var INV_DATA = [
       tips: 'A foam cannon dramatically outperforms a standard pump sprayer for fleet TFR application — foam clings to vertical trailer surfaces far longer than liquid spray, giving the chemical time to work. Worth the investment for fleet accounts.'
     }
   },
+
   {
+    priority: 'important',
+    name: 'F9 Double Eagle Degreaser',
+    qty: '1 gallon',
+    tag: 'Stain Prep',
+    color: '#0e7eb5',
+    icon: '🧹',
+    detail: {
+      use: 'Alkaline degreaser and concrete cleaner. Pre-cleaning with Double Eagle before F9 Barc dramatically improves rust, battery acid, and clay stain removal results. Also neutralizes acidic F9 products. Bleach-stable so it can be added to house wash mixes.',
+      qty_why: 'At 1:10 dilution, 1 gallon covers significant concrete area. Order together with F9 Barc — they work as a system.',
+      where: 'f9products.com direct. Order with F9 Barc to combine shipping.',
+      cost: '~$35-50 per gallon concentrate.',
+      mix: [
+        'General concrete pre-clean: 1:10 to 1:20 with water',
+        'Heavy oil or grease: 1:5 or full strength',
+        'Tire marks: 1:3 to full strength with stiff brush agitation',
+        'Neutralizing F9 Barc or Efflo after acid treatment: 1:10 applied and rinsed',
+        'SH house wash add-in (bleach stable): 1-2 oz per gallon of mix'
+      ],
+      storage: [
+        'Room temperature in sealed container',
+        'Away from strong acids',
+        'No special temperature requirements'
+      ],
+      shelf_life: '2+ years sealed.',
+      safety: 'Alkaline at full strength — gloves and eye protection. Lower hazard than acid products. Do not mix with strong acids.',
+      tips: 'Pre-cleaning concrete with Double Eagle BEFORE applying F9 Barc is the professional two-step system. Opens pores so F9 penetrates deeper and removes significantly more staining. Always use both together on serious stain removal jobs.'
+    }
+  },
+  {
+    priority: 'nice',
+    name: 'F9 Efflo (Efflorescence Remover)',
+    qty: '1 gallon (buy when needed)',
+    tag: 'Masonry Jobs',
+    color: '#f59e0b',
+    icon: '🧱',
+    detail: {
+      use: 'Professional buffered acid cleaner specifically for efflorescence — the white chalky mineral deposits on brick, concrete block, pavers, and retaining walls. Safer and more controllable than muriatic acid on residential masonry.',
+      qty_why: 'At 1:5 to 1:10 dilution, 1 gallon covers many jobs. Specialty product — buy when you have a confirmed efflorescence job.',
+      where: 'f9products.com direct. Allow 3-5 days shipping.',
+      cost: '~$40-55 per gallon.',
+      mix: [
+        'Standard efflorescence: 1 part F9 Efflo + 5-10 parts water on PRE-WET masonry',
+        'Heavy mineral deposits: 1 part F9 Efflo + 3-5 parts water',
+        'ALWAYS apply to pre-wet masonry — never to dry brick',
+        'Apply bottom to top on vertical surfaces — prevents acid runs on dry surface below',
+        'Dwell 3-5 min with light brush agitation, rinse, neutralize with baking soda solution'
+      ],
+      storage: [
+        'Sealed container in cool dry ventilated area',
+        'Away from metals — acid corrodes',
+        'Do NOT store near SH or alkaline products',
+        'Away from direct sunlight and heat'
+      ],
+      shelf_life: '2+ years sealed. Diluted solution: use same day.',
+      safety: 'ACID — chemical-resistant gloves and eye protection required. ALWAYS pre-wet masonry before applying. Neutralize all treated masonry surfaces with baking soda solution after rinsing — un-neutralized acid etches mortar joints invisibly.',
+      tips: 'Pre-wetting masonry is the single most important step. Neutralizing is non-negotiable on brick and mortar. Efflorescence will return if the underlying moisture intrusion is not fixed — advise customer and document in job notes.'
+    }
+  },
+    {
     priority: 'nice',
     name: 'Sure Klean 600',
     qty: '1 gallon (buy when needed)',
