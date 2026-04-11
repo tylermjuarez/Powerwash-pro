@@ -1110,6 +1110,29 @@ var CALC_JOBS = [
     ]
   },
   {
+    id:'fence', icon:'🪟', label:'Fence Washing', sub:'Wood, vinyl, iron, chain link',
+    presets:[
+      {name:'Wood Fence (Percarbonate)', chems:[
+        {name:'Sodium Percarbonate', pct:0, cups_per_gal:0.75, unit:'cups_per_gal', note:'3/4 cup per gallon of WARM water — must use warm water'},
+        {name:'Warm Water', fill:true, note:''}
+      ], warn:'500-800 PSI MAX on wood. Fan tip only, with the grain. DO NOT use high pressure.', notes:'Keep surface wet during 8-15 min dwell. Rinse with grain. Follow with oxalic brightener for best results.'},
+      {name:'Vinyl Fence (SH Wash)', chems:[
+        {name:'SH 12.5%', pct:2.5, unit:'pct', note:'Final ~2.5%'},
+        {name:'Elemonator', pct:0, oz_per_gal:2.5, unit:'oz_per_gal', note:'2.5 oz per gallon'},
+        {name:'Water', fill:true, note:''}
+      ], warn:'', notes:'Vinyl handles SH and moderate pressure well. 1,500-2,000 PSI rinse. Check both sides.'},
+      {name:'Iron / Metal Fence (SH + Rust)', chems:[
+        {name:'SH 12.5%', pct:2, unit:'pct', note:'Final ~2%'},
+        {name:'Elemonator', pct:0, oz_per_gal:2, unit:'oz_per_gal', note:''},
+        {name:'Water', fill:true, note:''}
+      ], warn:'Dry COMPLETELY after washing — wet wrought iron rusts within 24-48 hours in South Texas humidity.', notes:'For rust areas: follow with F9 Barc (1:1) or Oxalic Acid (1 cup per gal) after SH rinse.'},
+      {name:'Wood Brightener (Oxalic)', chems:[
+        {name:'Oxalic Acid', pct:0, cups_per_gal:0.5, unit:'cups_per_gal', note:'1/2 cup powder per gallon warm water'},
+        {name:'Warm Water', fill:true, note:''}
+      ], warn:'Harmful to plants — rinse vegetation.', notes:'Apply after wood cleaning. Dwell 5-8 min. Rinse lightly. Dramatically improves natural wood color.'}
+    ]
+  },
+  {
     id:'custom', icon:'⚗️', label:'Custom Mix', sub:'Build your own',
     presets:[], custom:true
   }
@@ -1829,20 +1852,59 @@ var CD={
       tips:["Pool deck sealing after cleaning is extremely popular and high-margin — sealed concrete stays cleaner longer and is much more comfortable barefoot in summer heat.","Cool Deck (the textured acrylic coating common on pool decks) is a different surface than concrete — use lower pressure and check if it needs recoating. Faded Cool Deck can be recoated, which is an upsell opportunity.","After cleaning, recommend a pool deck specific non-slip sealer — safety is a selling point, especially for families with children.","If pool deck has significant efflorescence (white chalky mineral staining), oxalic acid is safe to use on concrete pool decks as long as it does not contact pool water. Rinse heavily."]
     },
     {
-      name:"Fences",
-      desc:"Wood privacy, vinyl, aluminum, wrought iron, chain link — each requires different treatment",
+      name:"Wood Fence",
+      desc:"Cedar, pine, redwood — natural, stained, or painted. South Texas most common fence type",
       steps:[
-        {s:"Identify Fence Material",c:"N/A",p:"N/A",m:"Wood (cedar, pine, redwood) — natural or painted/stained. Vinyl — solid PVC. Aluminum — powder coated. Wrought iron — painted metal. Chain link — galvanized steel.",n:"Never treat all fences the same. Wood and vinyl are completely different substrates with very different tolerances."},
-        {s:"Wood Fence — Clean",c:"SH + Surfactant OR Sodium Percarbonate",p:"SH: 1-2% / Percarbonate: per label",m:"PRIMARY: Sodium percarbonate (F18 or OxiClean) for natural or stained wood — gentler, won't bleach. SECONDARY: SH 1-2% + surfactant for painted wood or heavy mildew. Apply at under 600 PSI.",n:""},
-        {s:"Wood Fence — Rinse",c:"Water",p:"N/A",m:"500-800 PSI MAX. With the grain. Wide fan tip only.",n:"High pressure splits wood fence pickets, raises grain, and destroys the surface for staining."},
-        {s:"Vinyl Fence — Clean",c:"SH + Surfactant",p:"2-3%",m:"PRIMARY: 2 parts SH + 8 parts water + Elemonator. SECONDARY: Spray Nine at full strength. Vinyl handles moderate pressure and SH well.",n:""},
-        {s:"Vinyl Fence — Rinse",c:"Water",p:"N/A",m:"1,500-2,000 PSI. Standard rinse.",n:""},
-        {s:"Metal Fences (Aluminum/Iron) — Clean",c:"SH + Surfactant",p:"2%",m:"PRIMARY: SH 2% + surfactant. For rust on wrought iron: F9 Barc or oxalic acid after SH treatment.",n:""},
-        {s:"Metal Fences — Rinse",c:"Water",p:"N/A",m:"2,000-2,500 PSI. Rinse all chemical residue thoroughly.",n:""},
-        {s:"Chain Link — Clean",c:"SH + Surfactant",p:"2%",m:"Apply and dwell 5-8 min. High-pressure rinse is fine on chain link.",n:""}
+        {s:"Assess Condition",c:"N/A",p:"N/A",m:"Natural/unstained cedar: can handle percarbonate or diluted SH. Stained or sealed wood: percarbonate preferred — SH can strip stain. Painted wood: SH 1-2% is fine. Check pickets for rot, splitting, or loose boards before washing — document with photos.",n:"Never start washing a fence that has significant rot or structural damage without noting it in writing to the customer first. Washing can expose and worsen hidden damage."},
+        {s:"Pre-wet Wood and Landscaping",c:"Water",p:"N/A",m:"Thoroughly wet all plants, grass, and landscaping on both sides of the fence. Pre-wet the fence surface itself.",n:"SH drifting onto neighbor property or garden is a real hazard with fence jobs — pre-wetting provides some protection but be mindful of overspray direction."},
+        {s:"Apply Cleaner",c:"Sodium Percarbonate OR SH + Surfactant",p:"Percarbonate: 3/4 cup per gallon warm water. SH: 1-2% final",m:"PRIMARY for natural/stained wood: Sodium percarbonate dissolved in warm water — gentler, will not bleach color, excellent at removing gray weathering and mildew. SECONDARY for painted wood or heavy mildew: SH 1-2% + Elemonator. Apply at low pressure (under 600 PSI) or with a pump sprayer.",n:"Warm water is essential for percarbonate activation — cold water does not dissolve it fully. Keep surface wet during dwell time."},
+        {s:"Dwell",c:"N/A",p:"N/A",m:"Percarbonate: 8-15 min wet dwell. Keep surface moist — reapply if drying. SH: 5-8 min dwell.",n:""},
+        {s:"Rinse",c:"Water",p:"500-800 PSI MAX — fan tip only, with the grain",m:"Wide fan tip (40 degree). Move with the wood grain direction — never across it. Distance: minimum 12 inches from surface.",n:"THIS IS THE MOST IMPORTANT STEP on wood fences. High pressure splits pickets, raises grain, creates fuzzing that cannot be repaired without sanding. The customer will see it immediately and you will be liable."},
+        {s:"Oxalic Brightener (Optional but Recommended)",c:"Oxalic Acid",p:"1/2 cup per gallon warm water",m:"Apply to clean, wet fence surface after rinse. Dwell 5-8 min. Rinse lightly. Brightens natural wood color and neutralizes any SH residue.",n:"This step makes the before/after difference dramatic. Highly recommended as a standard part of your wood fence wash — takes 10 min and transforms the result."},
+        {s:"Post-treat (SH Method Only)",c:"SH + Surfactant",p:"1-2%",m:"Apply light post-treat of SH mix after rinsing if heavy mildew was present.",n:"Kills any remaining mildew spores and extends time before regrowth."}
       ],
-      warns:["High pressure on wood fence pickets causes grain fuzzing and splintering that cannot be repaired without sanding — the customer will see it immediately.","Check fence post bases for rot before washing — washing can expose and accelerate hidden rot, and the customer may blame you for post failure.","Do NOT use acid treatments on powder-coated aluminum fences — strips the coating.","Wrought iron fence must be dried and treated with rust inhibitor after washing — wet iron rusts very quickly.","Always check what's on the other side of the fence before washing — SH drifting onto a neighbor's prized rose garden is a bad day."],
-      tips:["Wood fence washing + staining/sealing is an excellent annual package service — extremely high margin.","After cleaning, offer a fence sealer or wood preservative — same-day application saves the customer a return trip and adds significant revenue.","Vinyl fence oxidation (chalky residue) can be treated with vinyl restorer after cleaning — great upsell.","Wrought iron: after cleaning, offer a rust-inhibiting primer and paint touchup referral or service — wet iron rusts within days if not treated.","Fence cleaning season is spring and fall — set up a maintenance program and contact your fence customers proactively each season."]
+      warns:["HIGH PRESSURE WILL DAMAGE WOOD FENCE — 800 PSI maximum, fan tip, with the grain. No exceptions.","Check for rot at post bases before washing — document and inform customer before starting.","SH WILL strip wood stain and bleach natural cedar color — use percarbonate on any stained or natural wood unless customer is okay with bleaching.","Pre-wet both sides of fence — SH drift onto neighbor plants is a liability.","Do NOT let SH pool and sit in wood grain — keep it moving and rinse within dwell time."],
+      tips:["Wood fence wash plus staining or sealing is one of the highest-margin services in residential exterior cleaning — offer it as a package on every wood fence job.","Natural cedar after percarbonate wash + oxalic brightener looks like new lumber — always photograph for marketing.","Offer a fence sealer same day after cleaning — saves customer a return visit and adds $200-500+ revenue.","Set up annual maintenance contracts for wood fences — they need cleaning every 1-2 years and customers love the convenience of automatic scheduling.","In South Texas heat, wood fences dry fast — schedule wood fence washes for morning to reduce dwell-time management issues."]
+    },
+    {
+      name:"Vinyl Fence",
+      desc:"PVC vinyl — white, tan, gray — privacy, picket, rail",
+      steps:[
+        {s:"Assess Oxidation Level",c:"N/A",p:"N/A",m:"Light oxidation/chalking: standard SH wash handles it. Heavy oxidation (chalky white residue that wipes off): add vinyl restorer after cleaning. Check for cracks, broken caps, or fading — document before starting.",n:""},
+        {s:"Pre-wet Landscaping",c:"Water",p:"N/A",m:"Wet all plants within 15 ft.",n:""},
+        {s:"Apply House Wash Mix",c:"SH + Elemonator",p:"2-3% SH final",m:"PRIMARY: 2 parts SH (12.5%) + 8 parts water + 2-3 oz Elemonator per gallon. Apply with downstream injector, soft wash pump, or pump sprayer. SECONDARY: Spray Nine full strength for spot treatment of heavy staining.",n:"Vinyl handles SH and moderate pressure well — no special handling needed for the chemical step."},
+        {s:"Dwell",c:"N/A",p:"N/A",m:"5-10 min. Keep surface wet.",n:"Watch SH work on mold and algae — you can see the color change."},
+        {s:"Rinse",c:"Water",p:"1,500-2,000 PSI",m:"Thorough rinse. Standard pressure is fine on vinyl — no special precautions.",n:""},
+        {s:"Vinyl Restorer (If Oxidized)",c:"Vinyl Restorer or 303 Aerospace",p:"Per product label",m:"Apply to clean dry fence with a clean cloth or applicator. Work in sections. Wipe off excess.",n:"Restorer fills in micro-scratches in oxidized vinyl and dramatically restores gloss. Quote it as an add-on for any fence with visible chalking or dullness."}
+      ],
+      warns:["Check the back side of vinyl panels — mold often accumulates on the shaded side and customers will look there too.","Avoid very high pressure (3,000+ PSI) directly on vinyl panels — can crack or distort in hot weather. 2,000 PSI is plenty.","Document any pre-existing cracks, broken post caps, or damaged sections with photos before starting."],
+      tips:["Vinyl fence is the fastest fence to wash — good hourly rate job. Quote per linear foot.","Offer vinyl restorer as an add-on on every oxidized fence — adds $50-150 and takes 20 minutes.","Vinyl fence season is before HOA inspection season — neighborhood Facebook groups and HOA newsletters are good marketing channels.","White vinyl fences in South Texas shade-heavy areas grow green/black algae fast — annual maintenance contracts are easy to sell."]
+    },
+    {
+      name:"Wrought Iron Fence",
+      desc:"Painted wrought iron and steel — rust prevention critical after washing",
+      steps:[
+        {s:"Assess Rust Level",c:"N/A",p:"N/A",m:"Light surface rust (orange staining on paint): F9 Barc or oxalic acid treatment. Heavy rust with paint failure (flaking, bubbling): customer needs repaint — cleaning will temporarily improve appearance but rust will progress without paint restoration. Document and advise customer upfront.",n:"Be honest with customers about severe rust — washing will not fix structural rust issues."},
+        {s:"Apply SH + Surfactant",c:"SH + Elemonator",p:"2%",m:"Apply 2% SH mix to remove mold, algae, and surface dirt. Dwell 5-8 min.",n:""},
+        {s:"Rinse",c:"Water",p:"2,000-2,500 PSI",m:"Thorough rinse from top down.",n:""},
+        {s:"Rust Treatment (If Rust Present)",c:"F9 Barc or Oxalic Acid",p:"F9 Barc: 1:1 water:F9. Oxalic: 1 cup per gallon warm water",m:"After SH rinse and surface is still wet: apply rust remover to rust-stained areas. Dwell 5-10 min. Agitate lightly with nylon brush. Rinse.",n:"Do NOT use F9 Barc on bare metal that will rust again — it works on iron oxide but the exposed metal needs paint protection after treatment."},
+        {s:"Dry THOROUGHLY",c:"N/A",p:"N/A",m:"Allow fence to dry completely after washing — blow out water from joints and decorative elements if possible.",n:"CRITICAL: Wet wrought iron rusts within 24-48 hours in humid South Texas weather. The fence must be completely dry before rust treatment."},
+        {s:"Rust Inhibitor (Recommend to Customer)",c:"Rust-Oleum or Similar",p:"N/A",m:"Recommend customer apply rust-inhibiting paint or clear coat to any areas where paint has failed within 24 hours of washing.",n:"If you offer painting services or have a partner, this is an excellent referral opportunity — or add it to your service offerings."}
+      ],
+      warns:["Wet wrought iron rusts FAST in South Texas humidity — complete drying after washing is mandatory. Advise customer immediately.","Do NOT use acid treatments on areas with good paint — only apply to exposed rust or rust-stained areas.","Heavy rust with structural paint failure: advise customer this needs repainting, not just washing — set correct expectations before starting.","Document all rust and paint failure with photos before washing — customer may blame you for post-wash rust that was pre-existing."],
+      tips:["Wrought iron wash plus rust inhibitor application is a great package service — offer it on every iron fence job.","Seasonal (spring/fall) maintenance contracts make sense for iron fences in humid climates — rust progresses without regular treatment.","After cleaning, recommend a local painter or offer a referral fee arrangement for iron fence repaints — builds business relationships.","The before/after on a rusty wrought iron fence is extremely dramatic — always photograph for marketing."]
+    },
+    {
+      name:"Chain Link Fence",
+      desc:"Galvanized steel chain link — commercial and residential",
+      steps:[
+        {s:"Pre-wet Landscaping",c:"Water",p:"N/A",m:"Wet all plants on both sides of fence.",n:""},
+        {s:"Apply SH Mix",c:"SH + Elemonator",p:"2-3%",m:"Apply 2-3% SH + surfactant. Chain link is galvanized steel — handles SH without issue. Apply and let dwell 5-8 min.",n:"Chain link is the most forgiving fence material — handles SH and pressure without concern."},
+        {s:"High Pressure Rinse",c:"Water",p:"2,500-3,500 PSI",m:"Chain link handles high pressure well — rinse from both sides for complete cleaning.",n:"Get both sides of the fence — chain link traps debris and growth on both faces."},
+        {s:"Rust Treatment (If Needed)",c:"Oxalic Acid",p:"1 cup per gallon warm water",m:"For rust staining on chain link fabric or posts: apply oxalic acid solution, dwell 10 min, rinse thoroughly.",n:"Galvanized coating prevents structural rust in good condition — orange staining on older fences is often surface oxidation that responds well to oxalic treatment."}
+      ],
+      warns:["Check for broken or sharp wire ends before starting — chain link can have exposed cut ends that will shred your hose or injure your hands.","Rinse both sides — single-side rinse leaves chemical residue and missed debris on the back face."],
+      tips:["Chain link is quick to wash — good linear foot pricing opportunity.","Commercial chain link perimeter fencing is a great B2B account — warehouses, industrial sites, schools all have large chain link perimeters that need seasonal cleaning.","Overgrown vines on chain link: trim before washing — trying to wash through vegetation is ineffective and wastes time. Bill for the extra prep."]
     }
   ]},
   commercial:{label:"Commercial",icon:"🏢",jobs:[
