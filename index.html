@@ -22,10 +22,10 @@ button,input,select,textarea{font-family:inherit;}
 –accent:#0e7eb5;–accent2:#00c6e8;
 –green:#00d97e;–amber:#f5a623;–red:#ff3b5c;
 –header-bg:rgba(6,26,39,0.95);–card-shadow:0 2px 12px rgba(0,0,0,0.3);
-–dash-bg:#f0f4f8;–dash-bg2:#ffffff;
-–dash-text:#0d1117;–dash-text2:#374151;–dash-text3:#6b7280;
-–dash-border:#e5e7eb;
-–dash-blue:#0052cc;–dash-blue2:#0e7eb5;
+–dash-bg:#07111c;–dash-bg2:#0d1f2d;
+–dash-text:#e8f4fc;–dash-text2:#7fb3cc;–dash-text3:#4a7d96;
+–dash-border:rgba(255,255,255,0.1);
+–dash-blue:#4da6ff;–dash-blue2:#00c6e8;
 –dash-green:#00875a;–dash-amber:#b45309;–dash-red:#dc2626;
 –dash-shadow:0 1px 3px rgba(0,0,0,0.1),0 4px 16px rgba(0,0,0,0.06);
 }
@@ -356,11 +356,7 @@ border-radius:7px;padding:6px 10px;font-size:12px;color:var(–red);cursor:point
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(16px);background:var(–green);color:#052210;font-size:13px;font-weight:700;padding:10px 24px;border-radius:30px;z-index:999;opacity:0;transition:opacity 0.22s,transform 0.22s;pointer-events:none;letter-spacing:0.04em;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* DARK OVERRIDES FOR DASHBOARD */
-[data-theme=“dark”] #home{background:var(–dash-bg);}
-[data-theme=“dark”] .dn,[data-theme=“dark”] .dd{background:#0d1f2d;border-color:rgba(255,255,255,0.1);}
-[data-theme=“dark”] .dn-btn,[data-theme=“dark”] .dn-hm{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);}
-[data-theme=“dark”] .st,[data-theme=“dark”] .jc,[data-theme=“dark”] .qb,[data-theme=“dark”] .wk,[data-theme=“dark”] .qt{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.09);}
+/* theme handled entirely by JS applyTheme() */
 </style>
 
 </head>
